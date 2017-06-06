@@ -1,0 +1,9 @@
+tts/*
+deps/*
+secrets.yaml
+nest.conf
+OZW_Log.txt
+*.sqlite
+*.xml
+*.db
+*.log
