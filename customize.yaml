@@ -1,0 +1,45 @@
+light.ge_appliances_zll_light_00038784_1:
+  friendly_name: Living Room Door
+light.ge_appliances_zll_light_0005db57_1:
+  friendly_name: Living Room Chair
+
+sensor.deck_door_status:
+  friendly_name: Deck Door Status
+  icon: mdi:glassdoor
+sensor.deck_door_sensor_alarm_level_7_1:
+  friendly_name: Deck Door
+  icon: mdi:glassdoor
+binary_sensor.deck_door_sensor_sensor_7_0:
+  hidden: true
+sensor.deck_door_sensor_access_control_7_9:
+  hidden: true
+sensor.deck_door_sensor_alarm_type_7_0:
+  hidden: true
+sensor.deck_door_sensor_burglar_7_10:
+  hidden: true
+sensor.deck_door_sensor_clock_7_14:
+  hidden: true
+sensor.deck_door_sensor_sourcenodeid_7_2:
+  hidden: true
+
+sensor.living_room_door_status:
+  friendly_name: Living Room Door Status
+  icon: mdi:door
+sensor.living_room_door_sensor_alarm_level_8_1:
+  friendly_name: Living Room Door
+  icon: mdi:door
+binary_sensor.living_room_door_sensor_sensor_8_0:
+  hidden: true
+sensor.living_room_door_sensor_access_control_8_9:
+  hidden: true
+sensor.living_room_door_sensor_alarm_type_8_0:
+  hidden: true
+sensor.living_room_door_sensor_burglar_8_10:
+  hidden: true
+sensor.living_room_door_sensor_clock_8_14:
+  hidden: true
+sensor.living_room_door_sensor_sourcenodeid_8_2:
+  hidden: true
+
+binary_sensor.__sensor_6_0:
+  hidden: true

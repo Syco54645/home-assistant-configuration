@@ -1,0 +1,4 @@
+- platform: ddwrt
+  host: !secret router_ip
+  username: !secret router_user
+  password: !secret router_password

@@ -1,0 +1,52 @@
+lr_light_slaves:
+  entities:
+  - light.ge_appliances_zll_light_00038784_1
+  - light.ge_appliances_zll_light_0005db57_1
+  name: Living Room Lights
+  view: false
+front_light_slaves:
+  entities:
+  - light.front_porch
+  - light.front_lamp_post
+  name: Front Lights
+  view: false
+weather_wrapper:
+  entities:
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_humidity
+  - sensor.dark_sky_precip_probability
+  - sensor.dark_sky_precip
+  - sensor.dark_sky_daily_high_temperature
+  - sensor.dark_sky_daily_low_temperature
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_precip_intensity
+  - sensor.dark_sky_summary
+  - sun.sun
+  name: Weather
+  view: false
+alarm_wrapper:
+  entities:
+  - alarm_control_panel.ha_alarm
+  - sensor.living_room_door_status
+  - sensor.deck_door_status
+  name: Home Alarm System
+  view: false
+
+#tabs
+alarm:
+  name: Alarm
+  view: true
+  entities:
+    - group.alarm_wrapper
+default_view1:
+  name: Home
+  view: true
+  entities:
+  - group.lr_light_slaves
+  - group.front_light_slaves
+  - climate.living_room
+weather:
+  name: Weather
+  view: true
+  entities:
+  - group.weather_wrapper
