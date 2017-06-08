@@ -1,8 +1,10 @@
+######### Lights ##########
 light.ge_appliances_zll_light_00038784_1:
   friendly_name: Living Room Door
 light.ge_appliances_zll_light_0005db57_1:
   friendly_name: Living Room Chair
 
+######### Go Control Door ##########
 sensor.deck_door_status:
   friendly_name: Deck Door Status
   icon: mdi:glassdoor
@@ -40,6 +42,45 @@ sensor.living_room_door_sensor_clock_8_14:
   hidden: true
 sensor.living_room_door_sensor_sourcenodeid_8_2:
   hidden: true
+######### Go Control Motion ##########
+sensor.gocontrol_pir_1_alarm_level_6:
+  icon: mdi:security
+  friendly_name: "GoControl PIR Sensor"
+sensor.gocontrol_pir_1_alarm_type_6:
+  hidden: true
+sensor.gocontrol_pir_1_burglar_6:
+  hidden: true
+sensor.gocontrol_pir_1_sourcenodeid_6:
+  hidden: true
+sensor.gocontrol_pir_1_temperature_6:
+  icon: mdi:thermometer
+  friendly_name: "GoControl PIR Temperature"
 
+
+######### Hide Extra Sensors ##########
 binary_sensor.__sensor_6_0:
+  hidden: true
+binary_sensor.gocontrol_pir_1_sensor_6:
+  hidden: true
+
+######### Hide Nest Sensors ##########
+binary_sensor.living_room_thermostat_fan:
+  hidden: true
+binary_sensor.living_room_thermostat_has_leaf:
+  hidden: true
+binary_sensor.living_room_thermostat_is_locked:
+  hidden: true
+binary_sensor.living_room_thermostat_is_using_emergency_heat:
+  hidden: true
+binary_sensor.living_room_thermostat_online:
+  hidden: true
+sensor.living_room_thermostat_humidity:
+  hidden: true
+sensor.living_room_thermostat_hvac_state:
+  hidden: true
+sensor.living_room_thermostat_operation_mode:
+  hidden: true
+sensor.living_room_thermostat_target:
+  hidden: true
+sensor.living_room_thermostat_temperature:
   hidden: true

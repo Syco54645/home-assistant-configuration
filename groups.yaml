@@ -4,12 +4,14 @@ lr_light_slaves:
   - light.ge_appliances_zll_light_0005db57_1
   name: Living Room Lights
   view: false
+
 front_light_slaves:
   entities:
-  - light.front_porch
+  - light.cree_____________________________connected_a19_60w_equivalent____fe06502f_10
   - light.front_lamp_post
   name: Front Lights
   view: false
+
 weather_wrapper:
   entities:
   - sensor.dark_sky_temperature
@@ -24,20 +26,30 @@ weather_wrapper:
   - sun.sun
   name: Weather
   view: false
+
 alarm_wrapper:
   entities:
   - alarm_control_panel.ha_alarm
   - sensor.living_room_door_status
   - sensor.deck_door_status
+  - sensor.gocontrol_motion
   name: Home Alarm System
   view: false
 
+climate:
+  entities:
+  - climate.living_room
+  - sensor.living_room_thermostat_humidity
+  - sensor.living_room_thermostat_temperature
+  - sensor.living_room_thermostat_target
+
 #tabs
-alarm:
+alarm_tab:
   name: Alarm
   view: true
   entities:
     - group.alarm_wrapper
+
 default_view1:
   name: Home
   view: true
@@ -45,7 +57,8 @@ default_view1:
   - group.lr_light_slaves
   - group.front_light_slaves
   - climate.living_room
-weather:
+
+weather_tab:
   name: Weather
   view: true
   entities:

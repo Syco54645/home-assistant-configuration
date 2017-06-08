@@ -81,7 +81,11 @@ zha:
   database_path: zigbee.db
 
 alarm_control_panel:
-  - platform: manual
+  platform: manual
+  code: !secret alarm_code
+  pending_time: 10
+  trigger_time: 10
+  disarm_after_trigger: false
 
 binary_sensor: !include binary_sensors.yaml
 light: !include lights.yaml
@@ -89,3 +93,5 @@ group: !include groups.yaml
 automation: !include automations.yaml
 sensor: !include sensors.yaml
 device_tracker: !include device_trackers.yaml
+script: !include scripts.yaml
+notify: !include notifiers.yaml

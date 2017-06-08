@@ -1,0 +1,117 @@
+######### Light Automations ##########
+
+# This will turn the living room lights on when we open the door (presumably arriving home)
+- alias: Lights Front Door Trigger
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: sensor.living_room_door_status
+    state: 'open'
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+
+# This will turn the living room lights on and dim them after 830 when we open the door (presumably arriving home)
+- alias: Lights Front Door Trigger Late (8:30pm)
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: sensor.living_room_door_status
+    state: 'open'
+  condition:
+    condition: time
+    after: '20:30:00'
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data:
+      brightness: 5
+
+# This will turn on the front house lights 1 hour before sunset
+- alias: Lights Front House Sunset On
+  initial_state: True
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: light.turn_on
+    entity_id: group.front_light_slaves
+
+# This will turn off the front house lights at 11pm
+- alias: Lights Front House 11pm Off
+  initial_state: True
+  trigger:
+    platform: time
+    after: '23:00:00'
+  action:
+    service: light.turn_off
+    entity_id: group.front_light_slaves
+
+
+######### Alarm Automations ##########
+- alias: Alarm Away
+  initial_state: True
+  #hide_entity: True
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_door_status
+    state: 'open'
+  - platform: state
+    entity_id: sensor.deck_door_status
+    state: 'open'
+  condition:
+    condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.ha_alarm
+
+#### Flash the lights
+- alias: Triggered Flash
+  #hide_entity: True
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'triggered'
+  action:
+  - service: script.turn_on
+    entity_id: script.light_flash
+  - service: notify.frank_pushover
+    data:
+      message: 'Home Alarm Triggered {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+#### Alarm disarmed, switch to normal
+- alias: Disarmed Off
+  #hide_entity: True
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  action:
+    - service: script.turn_off
+      entity_id: script.light_loop
+    - service: script.turn_off
+      entity_id: script.light_flash
+    - service: script.turn_off
+      entity_id: script.light_loop
+    - service: script.turn_off
+      entity_id: script.light_flash
+    - service: notify.frank_pushover
+      data:
+        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+
+# - alias: Test Pushover
+#   #hide_entity: True
+#   trigger:
+#     platform: state
+#     entity_id: alarm_control_panel.ha_alarm
+#     state: 'disarmed'
+#   action:
+#     - service: notify.frank_pushover
+#       data:
+#         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+
+# ToDo
+# Arrive home after 11pm, turn on the front lights for 20 minutes.
+# Do not trigger the 830 if the lights are already on

@@ -1,0 +1,4 @@
+- name: Frank Pushover
+  platform: pushover
+  api_key: !secret frank_pushover_api
+  user_key: !secret frank_pushover_user

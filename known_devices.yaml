@@ -1,0 +1,80 @@
+
+android9190877cf1e0284f:
+  hide_if_away: false
+  mac: 64:BC:0C:44:B4:B5
+  name: Jess 5x
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+android317bb99286d305e1:
+  hide_if_away: false
+  mac: 64:BC:0C:65:7A:9A
+  name: Frank 5x
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+bedroom:
+  hide_if_away: false
+  mac: AC:3A:7A:A0:FD:59
+  name: Bedroom
+  picture:
+  track: false
+  vendor: Roku, Inc.
+
+hap7f60c7:
+  hide_if_away: false
+  mac: F0:03:8C:7F:60:C7
+  name: hap-7F60C7
+  picture:
+  track: false
+  vendor: AzureWave Technology Inc.
+
+02aa01ac201305hl:
+  hide_if_away: false
+  mac: 18:B4:30:04:41:92
+  name: 02AA01AC201305HL
+  picture:
+  track: false
+  vendor: Nest Labs Inc.
+
+3423baf63570:
+  hide_if_away: false
+  mac: 34:23:BA:F6:35:70
+  name: '*'
+  picture:
+  track: false
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+owlet:
+  hide_if_away: false
+  mac: 70:F1:A1:D9:F4:80
+  name: owlet
+  picture:
+  track: false
+  vendor: Liteon Technology Corporation
+
+blueroom:
+  hide_if_away: false
+  mac: B8:3E:59:51:AD:C9
+  name: Blueroom
+  picture:
+  track: false
+  vendor: Roku, Inc.
+
+npic1b3e0:
+  hide_if_away: false
+  mac: 94:53:30:00:3B:37
+  name: NPIC1B3E0
+  picture:
+  track: false
+  vendor: Hon Hai Precision Ind. Co.,Ltd.
+
+0c2a690457f7:
+  hide_if_away: false
+  mac: 0C:2A:69:04:57:F7
+  name: '*'
+  picture:
+  track: false
+  vendor: electric imp, incorporated

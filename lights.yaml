@@ -31,14 +31,14 @@
   payload_off: "OFF"
   optimistic: false
   retain: true
-- platform: mqtt
-  name: "Front Porch"
-  state_topic: "wink/4/1"
-  command_topic: "wink/4/1/set"
-  brightness_state_topic: "wink/4/2"  
-  brightness_command_topic: "wink/4/2/set"  
-  qos: 0
-  payload_on: "ON"
-  payload_off: "OFF"
-  optimistic: false
-  retain: true
+# - platform: mqtt
+#   name: "Front Porch"
+#   state_topic: "wink/4/1"
+#   command_topic: "wink/4/1/set"
+#   brightness_state_topic: "wink/4/2"  
+#   brightness_command_topic: "wink/4/2/set"  
+#   qos: 0
+#   payload_on: "ON"
+#   payload_off: "OFF"
+#   optimistic: false
+#   retain: true
