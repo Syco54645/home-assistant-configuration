@@ -78,3 +78,21 @@ npic1b3e0:
   picture:
   track: false
   vendor: electric imp, incorporated
+
+68ca00012a8c:
+  hide_if_away: false
+  icon:
+  mac: 68:CA:00:01:2A:8C
+  name: 68ca00012a8c
+  picture:
+  track: false
+  vendor: Octopus Systems Limited
+
+chromecast:
+  hide_if_away: false
+  icon:
+  mac: 54:60:09:10:7E:2C
+  name: Chromecast
+  picture:
+  track: false
+  vendor: unknown

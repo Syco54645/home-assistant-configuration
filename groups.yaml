@@ -7,8 +7,8 @@ lr_light_slaves:
 
 front_light_slaves:
   entities:
-  - light.cree_____________________________connected_a19_60w_equivalent____fe06502f_10
-  - light.front_lamp_post
+  - light.linear_lb60z1_dimmable_led_light_bulb_level_17_0
+  - light.linear_lb60z1_dimmable_led_light_bulb_level_18_0
   name: Front Lights
   view: false
 
@@ -33,6 +33,7 @@ alarm_wrapper:
   - sensor.living_room_door_status
   - sensor.deck_door_status
   - sensor.gocontrol_motion
+  - sensor.ssl_cert_expiry
   name: Home Alarm System
   view: false
 

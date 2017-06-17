@@ -5,22 +5,46 @@
   initial_state: True
   trigger:
     platform: state
-    entity_id: sensor.living_room_door_status
-    state: 'open'
+    entity_id: sensor.deck_door_status
+    from: 'closed'
+    to: 'open'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.lr_light_slaves
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.dark_sky_cloud_coverage
+          above: 60
+        - condition: sun
+          after: sunset
+          after_offset: "-4:00:00"
   action:
     service: light.turn_on
     entity_id: group.lr_light_slaves
+    data:
+      brightness: 255
 
 # This will turn the living room lights on and dim them after 830 when we open the door (presumably arriving home)
 - alias: Lights Front Door Trigger Late (8:30pm)
   initial_state: True
   trigger:
     platform: state
-    entity_id: sensor.living_room_door_status
-    state: 'open'
+    entity_id: sensor.deck_door_status
+    from: 'closed'
+    to: 'open'
   condition:
-    condition: time
-    after: '20:30:00'
+    condition: and
+    conditions:
+    - condition: time
+      after: '20:30:00'
+      before: '01:00:00'
+    - condition: state
+      entity_id: group.lr_light_slaves
+      state: 'off'
   action:
     service: light.turn_on
     entity_id: group.lr_light_slaves
@@ -37,13 +61,38 @@
   action:
     service: light.turn_on
     entity_id: group.front_light_slaves
+    data:
+      brightness: 255
+
+# This will turn the front house lights on when we arrive home
+- alias: Lights Front Arrival
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.android317bb99286d305e1, device_tracker.android9190877cf1e0284f
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.front_light_slaves
+      state: 'off'
+    - condition: sun
+      after: sunset
+      after_offset: "-1:00:00"
+  action:
+    service: light.turn_on
+    entity_id: group.front_light_slaves
+    data:
+      brightness: 255
 
 # This will turn off the front house lights at 11pm
 - alias: Lights Front House 11pm Off
   initial_state: True
   trigger:
     platform: time
-    after: '23:00:00'
+    at: '23:00:00'
   action:
     service: light.turn_off
     entity_id: group.front_light_slaves
@@ -56,10 +105,12 @@
   trigger:
   - platform: state
     entity_id: sensor.living_room_door_status
-    state: 'open'
+    from: 'closed'
+    to: 'open'
   - platform: state
     entity_id: sensor.deck_door_status
-    state: 'open'
+    from: 'closed'
+    to: 'open'
   condition:
     condition: state
     entity_id: alarm_control_panel.ha_alarm
@@ -74,7 +125,8 @@
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
-    state: 'triggered'
+    from: 'armed_away'
+    to: 'triggered'
   action:
   - service: script.turn_on
     entity_id: script.light_flash
@@ -87,7 +139,8 @@
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
-    state: 'disarmed'
+    from: 'triggered'
+    to: 'disarmed'
   action:
     - service: script.turn_off
       entity_id: script.light_loop
@@ -101,16 +154,16 @@
       data:
         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
-# - alias: Test Pushover
-#   #hide_entity: True
-#   trigger:
-#     platform: state
-#     entity_id: alarm_control_panel.ha_alarm
-#     state: 'disarmed'
-#   action:
-#     - service: notify.frank_pushover
-#       data:
-#         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+- alias: Test Pushover
+  #hide_entity: True
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  action:
+    - service: notify.frank_pushover
+      data:
+        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
 # ToDo
 # Arrive home after 11pm, turn on the front lights for 20 minutes.

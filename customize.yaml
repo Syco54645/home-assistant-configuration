@@ -3,6 +3,10 @@ light.ge_appliances_zll_light_00038784_1:
   friendly_name: Living Room Door
 light.ge_appliances_zll_light_0005db57_1:
   friendly_name: Living Room Chair
+light.linear_lb60z1_dimmable_led_light_bulb_level_17_0:
+  friendly_name: Front Porch Light
+light.linear_lb60z1_dimmable_led_light_bulb_level_18_0:
+  friendly_name: Front Lamp Post
 
 ######### Go Control Door ##########
 sensor.deck_door_status:
