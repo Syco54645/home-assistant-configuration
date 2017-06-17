@@ -1,0 +1,28 @@
+- platform: template
+  sensors:
+    deck_door_status:
+      value_template: "{%if states.sensor.deck_door_sensor_alarm_level_7_1.state == '255' %}open{% elif states.sensor.deck_door_sensor_alarm_level_7_1.state == '0' %}closed{% endif %}"
+      friendly_name: "Deck Door Status"
+    living_room_door_status:
+      value_template: "{%if states.sensor.living_room_door_sensor_alarm_level_8_1.state == '255' %}open{% elif states.sensor.living_room_door_sensor_alarm_level_8_1.state == '0' %}closed{% endif %}"
+      friendly_name: "Living Room Door Status"
+    gocontrol_motion:
+      value_template: "{%if states.sensor.linear_wapirz1_motion_sensor_alarm_level_9_1.state == '255' %}motion detected{% elif states.sensor.linear_wapirz1_motion_sensor_alarm_level_9_1.state == '0' %}standby{% endif %}"
+      friendly_name: "GoControl Motion"
+- platform: cert_expiry
+  host: !secret dns_host
+- platform: darksky
+  api_key: !secret darksky_api
+  latitude: !secret latitude_loc_home
+  longitude: !secret longitude_loc_home
+  monitored_conditions:
+  -  summary
+  -  precip_type
+  -  precip_intensity
+  -  precip_probability
+  -  temperature
+  -  apparent_temperature
+  -  humidity
+  -  temperature_max
+  -  temperature_min
+  -  cloud_cover
