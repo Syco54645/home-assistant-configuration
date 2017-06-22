@@ -7,8 +7,8 @@ lr_light_slaves:
 
 front_light_slaves:
   entities:
-  - light.linear_lb60z1_dimmable_led_light_bulb_level_17_0
-  - light.linear_lb60z1_dimmable_led_light_bulb_level_18_0
+  - light.front_lamp_post_level
+  - light.front_porch_light_level
   name: Front Lights
   view: false
 

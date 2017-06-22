@@ -1,0 +1,10 @@
+alias: Basement Pico On
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: sensor.basement_lights_pico
+    from: '0'
+    to: '1'
+action:
+  service: switch.turn_on
+  entity_id: switch.game_room_lights_switch

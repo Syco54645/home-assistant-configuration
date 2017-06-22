@@ -96,3 +96,30 @@ chromecast:
   picture:
   track: false
   vendor: unknown
+
+50f5da960d9c:
+  hide_if_away: false
+  icon:
+  mac: 50:F5:DA:96:0D:9C
+  name: 50f5da960d9c
+  picture:
+  track: false
+  vendor: Amazon Technologies Inc.
+
+jborlsiphone:
+  hide_if_away: false
+  icon:
+  mac: BC:9F:EF:DC:CB:4D
+  name: Jborls-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+b8ee65aebf41:
+  hide_if_away: false
+  icon:
+  mac: B8:EE:65:AE:BF:41
+  name: b8ee65aebf41
+  picture:
+  track: false
+  vendor: Liteon Technology Corporation

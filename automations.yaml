@@ -165,6 +165,7 @@
       data:
         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
+- !include caseta/basement_pico_on.yaml
+- !include caseta/basement_pico_off.yaml
 # ToDo
 # Arrive home after 11pm, turn on the front lights for 20 minutes.
-# Do not trigger the 830 if the lights are already on

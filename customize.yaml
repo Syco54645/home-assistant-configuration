@@ -1,70 +1,81 @@
 ######### Lights ##########
 light.ge_appliances_zll_light_00038784_1:
   friendly_name: Living Room Door
+  emulated_hue_name: Living Room Door Hue
 light.ge_appliances_zll_light_0005db57_1:
   friendly_name: Living Room Chair
-light.linear_lb60z1_dimmable_led_light_bulb_level_17_0:
-  friendly_name: Front Porch Light
-light.linear_lb60z1_dimmable_led_light_bulb_level_18_0:
+  emulated_hue_name: Living Room Chair Hue
+light.front_lamp_post_level:
   friendly_name: Front Lamp Post
+light.front_porch_light_level:
+  friendly_name: Front Porch Light
 
 ######### Go Control Door ##########
 sensor.deck_door_status:
   friendly_name: Deck Door Status
   icon: mdi:glassdoor
-sensor.deck_door_sensor_alarm_level_7_1:
+sensor.deck_door_sensor_alarm_level:
   friendly_name: Deck Door
   icon: mdi:glassdoor
-binary_sensor.deck_door_sensor_sensor_7_0:
   hidden: true
-sensor.deck_door_sensor_access_control_7_9:
+binary_sensor.deck_door_sensor_sensor:
   hidden: true
-sensor.deck_door_sensor_alarm_type_7_0:
+sensor.deck_door_sensor_access_control:
   hidden: true
-sensor.deck_door_sensor_burglar_7_10:
+sensor.deck_door_sensor_alarm_type:
   hidden: true
-sensor.deck_door_sensor_clock_7_14:
+sensor.deck_door_sensor_burglar:
   hidden: true
-sensor.deck_door_sensor_sourcenodeid_7_2:
+sensor.deck_door_sensor_clock:
+  hidden: true
+sensor.deck_door_sensor_sourcenodeid:
   hidden: true
 
 sensor.living_room_door_status:
   friendly_name: Living Room Door Status
   icon: mdi:door
-sensor.living_room_door_sensor_alarm_level_8_1:
+sensor.living_room_door_sensor_alarm_level:
   friendly_name: Living Room Door
   icon: mdi:door
-binary_sensor.living_room_door_sensor_sensor_8_0:
   hidden: true
-sensor.living_room_door_sensor_access_control_8_9:
+binary_sensor.living_room_door_sensor_sensor:
   hidden: true
-sensor.living_room_door_sensor_alarm_type_8_0:
+sensor.living_room_door_sensor_access_control:
   hidden: true
-sensor.living_room_door_sensor_burglar_8_10:
+sensor.living_room_door_sensor_alarm_type:
   hidden: true
-sensor.living_room_door_sensor_clock_8_14:
+sensor.living_room_door_sensor_burglar:
   hidden: true
-sensor.living_room_door_sensor_sourcenodeid_8_2:
+sensor.living_room_door_sensor_clock:
+  hidden: true
+sensor.living_room_door_sensor_sourcenodeid:
   hidden: true
 ######### Go Control Motion ##########
-sensor.gocontrol_pir_1_alarm_level_6:
+sensor.gocontrol_pir_1_alarm_level:
   icon: mdi:security
   friendly_name: "GoControl PIR Sensor"
-sensor.gocontrol_pir_1_alarm_type_6:
+sensor.gocontrol_pir_1_alarm_type:
   hidden: true
-sensor.gocontrol_pir_1_burglar_6:
+sensor.gocontrol_pir_1_burglar:
   hidden: true
-sensor.gocontrol_pir_1_sourcenodeid_6:
+sensor.gocontrol_pir_1_sourcenodeid:
   hidden: true
-sensor.gocontrol_pir_1_temperature_6:
+sensor.gocontrol_pir_1_temperature:
   icon: mdi:thermometer
   friendly_name: "GoControl PIR Temperature"
-
+sensor.linear_wapirz1_motion_sensor_alarm_type:
+  hidden: true
+sensor.linear_wapirz1_motion_sensor_burglar:
+  hidden: true
+sensor.linear_wapirz1_motion_sensor_alarm_level:
+  hidden: true
+sensor.linear_wapirz1_motion_sensor_sourcenodeid:
+  hidden: true
 
 ######### Hide Extra Sensors ##########
-binary_sensor.__sensor_6_0:
+binary_sensor.linear_wapirz1_motion_sensor_sensor:
   hidden: true
-binary_sensor.gocontrol_pir_1_sensor_6:
+binary_sensor.gocontrol_pir_1_sensor:
   hidden: true
 
 ######### Hide Nest Sensors ##########
@@ -87,4 +98,8 @@ sensor.living_room_thermostat_operation_mode:
 sensor.living_room_thermostat_target:
   hidden: true
 sensor.living_room_thermostat_temperature:
+  hidden: true
+
+######### Hide Extra Dark Sky ##########
+sensor.dark_sky_cloud_coverage:
   hidden: true

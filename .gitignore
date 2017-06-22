@@ -11,3 +11,4 @@ OZW_Log.txt
 cert/*
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+caseta_*.json
