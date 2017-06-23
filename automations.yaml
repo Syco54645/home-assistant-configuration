@@ -3,6 +3,7 @@
 # This will turn the living room lights on when we open the door (presumably arriving home)
 - alias: Lights Front Door Trigger
   initial_state: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: sensor.deck_door_status
@@ -31,6 +32,7 @@
 # This will turn the living room lights on and dim them after 830 when we open the door (presumably arriving home)
 - alias: Lights Front Door Trigger Late (8:30pm)
   initial_state: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: sensor.deck_door_status
@@ -54,6 +56,7 @@
 # This will turn on the front house lights 1 hour before sunset
 - alias: Lights Front House Sunset On
   initial_state: True
+  hide_entity: true
   trigger:
     platform: sun
     event: sunset
@@ -67,6 +70,7 @@
 # This will turn the front house lights on when we arrive home
 - alias: Lights Front Arrival
   initial_state: true
+  hide_entity: true
   trigger:
     platform: state
     entity_id: device_tracker.android317bb99286d305e1, device_tracker.android9190877cf1e0284f
@@ -87,11 +91,16 @@
     data:
       brightness: 255
 
-# This will turn the front house lights off after 20 minutes if they come on after 11pm
-- alias: Light Front House off after 20m after 11pm
+# This will turn the front house lights off after 15 minutes if they come on after 11pm
+- alias: Light Front House off after 15m after 11pm
+  initial_state: true
+  hide_entity: true
   trigger:
-    platform: template
-    value_template: '(as_timestamp(states.sensor.date__time.last_updated)) -as_timestamp (states.group.front_light_slaves.last_updated) >= 300'
+    platform: state
+    entity_id: group.front_light_slaves
+    to: 'on'
+    for:
+      minutes: 15
   condition:
     condition: and
     conditions:
@@ -107,6 +116,7 @@
 # This will turn off the front house lights at 11pm
 - alias: Lights Front House 11pm Off
   initial_state: True
+  hide_entity: true
   trigger:
     platform: time
     at: '23:00:00'
@@ -118,7 +128,7 @@
 ######### Alarm Automations ##########
 - alias: Alarm Away
   initial_state: True
-  #hide_entity: True
+  hide_entity: true
   trigger:
   - platform: state
     entity_id: sensor.living_room_door_status
@@ -138,7 +148,7 @@
 
 #### Flash the lights
 - alias: Triggered Flash
-  #hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
@@ -152,7 +162,7 @@
       message: 'Home Alarm Triggered {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 #### Alarm disarmed, switch to normal
 - alias: Disarmed Off
-  #hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
@@ -172,7 +182,7 @@
         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
 - alias: Test Pushover
-  #hide_entity: True
+  hide_entity: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
