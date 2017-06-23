@@ -1,0 +1,13 @@
+alias: Livingroom Pico Down
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: sensor.living_room_pico
+    from: '0'
+    to: '16'
+action:
+  service: light.turn_on
+  entity_id: group.lr_light_slaves
+  data_template:
+    brightness: '{{ states.light.ge_appliances_zll_light_00038784_1.attributes.brightness - 50 }}'

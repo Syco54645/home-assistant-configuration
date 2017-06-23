@@ -87,6 +87,23 @@
     data:
       brightness: 255
 
+# This will turn the front house lights off after 20 minutes if they come on after 11pm
+- alias: Light Front House off after 20m after 11pm
+  trigger:
+    platform: template
+    value_template: '(as_timestamp(states.sensor.date__time.last_updated)) -as_timestamp (states.group.front_light_slaves.last_updated) >= 300'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.front_light_slaves
+        state: 'on'
+      - condition: time
+        after: '20:00:10'
+  action:
+    service: light.turn_off
+    entity_id: group.front_light_slaves
+
 # This will turn off the front house lights at 11pm
 - alias: Lights Front House 11pm Off
   initial_state: True
@@ -169,5 +186,10 @@
 - !include caseta/basement_pico_off.yaml
 - !include caseta/basement_on.yaml
 - !include caseta/basement_off.yaml
+- !include caseta/livingroom_pico_on.yaml
+- !include caseta/livingroom_pico_off.yaml
+- !include caseta/livingroom_pico_up.yaml
+- !include caseta/livingroom_pico_down.yaml
+- !include caseta/livingroom_pico_favorite.yaml
 # ToDo
 # Arrive home after 11pm, turn on the front lights for 20 minutes.

@@ -1,0 +1,11 @@
+alias: Livingroom Pico Off
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: sensor.living_room_pico
+    from: '0'
+    to: '4'
+action:
+  service: light.turn_off
+  entity_id: group.lr_light_slaves

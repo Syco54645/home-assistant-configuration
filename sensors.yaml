@@ -9,6 +9,9 @@
     gocontrol_motion:
       value_template: "{%if states.sensor.linear_wapirz1_motion_sensor_alarm_level.state == '255' %}motion detected{% elif states.sensor.linear_wapirz1_motion_sensor_alarm_level.state == '0' %}standby{% endif %}"
       friendly_name: "GoControl Motion"
+- platform: time_date
+  display_options:
+    - 'date_time'
 - platform: cert_expiry
   host: !secret dns_host
 - platform: darksky
