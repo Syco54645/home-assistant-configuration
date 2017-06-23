@@ -12,6 +12,20 @@ front_light_slaves:
   name: Front Lights
   view: false
 
+basement_light_slaves:
+  entities:
+  - light.basement_light_dimmer
+  - switch.basement_playroom_lights_switch
+  name: Basement Playroom Lights
+  view: false
+
+kitchen_light_slaves:
+  entities:
+  - light.kitchen_light_dimmer
+  - switch.sunken_room_lights_switch
+  name: Kitchen Lights
+  view: false
+
 weather_wrapper:
   entities:
   - sensor.dark_sky_temperature

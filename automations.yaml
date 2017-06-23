@@ -167,5 +167,7 @@
 
 - !include caseta/basement_pico_on.yaml
 - !include caseta/basement_pico_off.yaml
+- !include caseta/basement_on.yaml
+- !include caseta/basement_off.yaml
 # ToDo
 # Arrive home after 11pm, turn on the front lights for 20 minutes.
