@@ -103,3 +103,34 @@ sensor.living_room_thermostat_temperature:
 ######### Hide Extra Dark Sky ##########
 sensor.dark_sky_cloud_coverage:
   hidden: true
+
+######### Nest Protect ##########
+sensor.family_room_nest_protect_smoke_status:
+  icon: mdi:fire
+sensor.family_room_nest_protect_co_status:
+  icon: mdi:gas-cylinder
+sensor.hallway_nest_protect_smoke_status:
+  icon: mdi:fire
+sensor.hallway_nest_protect_co_status:
+  icon: mdi:gas-cylinder
+sensor.basement_nest_protect_smoke_status:
+  icon: mdi:fire
+sensor.basement_nest_protect_co_status:
+  icon: mdi:gas-cylinder
+sensor.family_room_nest_protect_battery_health:
+  icon: mdi:battery
+  hidden: true
+sensor.hallway_nest_protect_battery_health:
+  icon: mdi:battery
+  hidden: true
+sensor.basement_nest_protect_battery_health:
+  icon: mdi:battery
+  hidden: true
+
+######### Pico Remotes ##########
+sensor.kitchen_light_pico:
+  hidden: true
+sensor.basement_lights_pico:
+  hidden: true
+sensor.living_room_pico:
+  hidden: true

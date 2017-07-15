@@ -59,10 +59,14 @@ tts:
 #wink:
 #  access_token: !secret wink_hub_access_token
 
+#mqtt:
+#  broker: !secret mqtt_broker
+#  port: !secret mqtt_port
+#  client_id: home-assistant-1
+
 mqtt:
-  broker: !secret mqtt_broker
-  port: !secret mqtt_port
-  client_id: home-assistant-1
+  broker: 192.168.1.133
+  port: 9898
 
 # nest
 nest:
@@ -72,10 +76,6 @@ nest:
 #ifttt
 ifttt:
   key: !secret ifttt_key
-
-emulated_hue:
-  type: alexa
-
 
 #lutron caseta
 caseta:
@@ -116,3 +116,16 @@ sensor: !include sensors.yaml
 device_tracker: !include device_trackers.yaml
 script: !include scripts.yaml
 notify: !include notifiers.yaml
+
+snips:
+  intents:
+    LightsIntent:
+      action:
+        - service_template: >
+            {% if state == 'on' %}
+              light.turn_on
+            {% else %}
+              light.turn_off
+            {% endif %}
+          data_template:
+            entity_id: group.{{ location | replace(" ", "_") }}

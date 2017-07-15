@@ -1,0 +1,11 @@
+alias: Basement Dimmer Off
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: light.master_bedroom_light_dimmer
+    from: 'on'
+    to: 'off'
+action:
+  service: switch.turn_off
+  entity_id: switch.master_bedroom_lights_switch

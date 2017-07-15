@@ -26,6 +26,20 @@ kitchen_light_slaves:
   name: Kitchen Lights
   view: false
 
+game_room_light_slaves:
+  entities:
+  - light.game_room_dimmer
+  - switch.game_room_lights_switch
+  name: Game Room Lights
+  view: false
+
+master_bedroom_room_light_slaves:
+  entities:
+  - light.master_bedroom_light_dimmer
+  - switch.master_bedroom_lights_switch
+  name: Master Bedroom Room Lights
+  view: false
+
 weather_wrapper:
   entities:
   - sensor.dark_sky_temperature
@@ -47,9 +61,23 @@ alarm_wrapper:
   - sensor.living_room_door_status
   - sensor.deck_door_status
   - sensor.gocontrol_motion
-  - sensor.ssl_cert_expiry
+  - sensor.ssl_certificate_expiry
   name: Home Alarm System
   view: false
+smoke_detector_wrapper:
+  entities:
+  - sensor.family_room_nest_protect_smoke_status
+  - sensor.hallway_nest_protect_smoke_status
+  - sensor.basement_nest_protect_smoke_status
+  - sensor.family_room_nest_protect_co_status
+  - sensor.hallway_nest_protect_co_status
+  - sensor.basement_nest_protect_co_status
+  - binary_sensor.family_room_nest_protect_online
+  - binary_sensor.hallway_nest_protect_online
+  - binary_sensor.basement_nest_protect_online
+  name: Smoke Detector
+  view: false
+
 
 climate:
   entities:
@@ -64,6 +92,7 @@ alarm_tab:
   view: true
   entities:
     - group.alarm_wrapper
+    - group.smoke_detector_wrapper
 
 default_view1:
   name: Home

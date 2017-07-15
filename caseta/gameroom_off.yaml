@@ -1,0 +1,11 @@
+alias: Game Room Dimmer Off
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: light.game_room_dimmer
+    from: 'on'
+    to: 'off'
+action:
+  service: switch.turn_off
+  entity_id: switch.game_room_lights_switch

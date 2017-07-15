@@ -19,13 +19,17 @@
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
   monitored_conditions:
-  -  summary
-  -  precip_type
-  -  precip_intensity
-  -  precip_probability
-  -  temperature
-  -  apparent_temperature
-  -  humidity
-  -  temperature_max
-  -  temperature_min
-  -  cloud_cover
+  - summary
+  - precip_type
+  - precip_intensity
+  - precip_probability
+  - temperature
+  - apparent_temperature
+  - humidity
+  - temperature_max
+  - temperature_min
+  - cloud_cover
+  - icon
+  - wind_bearing
+  - wind_speed
+  - pressure

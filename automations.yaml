@@ -6,7 +6,7 @@
   hide_entity: true
   trigger:
     platform: state
-    entity_id: sensor.deck_door_status
+    entity_id: sensor.living_room_door_status
     from: 'closed'
     to: 'open'
   condition:
@@ -35,7 +35,7 @@
   hide_entity: true
   trigger:
     platform: state
-    entity_id: sensor.deck_door_status
+    entity_id: sensor.living_room_door_status
     from: 'closed'
     to: 'open'
   condition:
@@ -108,7 +108,7 @@
         entity_id: group.front_light_slaves
         state: 'on'
       - condition: time
-        after: '20:00:10'
+        after: '23:00:10'
   action:
     service: light.turn_off
     entity_id: group.front_light_slaves
@@ -201,5 +201,15 @@
 - !include caseta/livingroom_pico_up.yaml
 - !include caseta/livingroom_pico_down.yaml
 - !include caseta/livingroom_pico_favorite.yaml
+- !include caseta/gameroom_on.yaml
+- !include caseta/gameroom_off.yaml
+- !include caseta/master_bedroom_pico_on.yaml
+- !include caseta/master_bedroom_pico_off.yaml
+- !include caseta/master_bedroom_on.yaml
+- !include caseta/master_bedroom_off.yaml
+- !include caseta/kitchen_pico_on.yaml
+- !include caseta/kitchen_pico_off.yaml
+- !include caseta/kitchen_on.yaml
+- !include caseta/kitchen_off.yaml
 # ToDo
 # Arrive home after 11pm, turn on the front lights for 20 minutes.

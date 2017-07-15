@@ -1,0 +1,11 @@
+alias: Kitchen Dimmer Off
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: light.kitchen_light_dimmer
+    from: 'on'
+    to: 'off'
+action:
+  service: switch.turn_off
+  entity_id: switch.sunken_room_lights_switch

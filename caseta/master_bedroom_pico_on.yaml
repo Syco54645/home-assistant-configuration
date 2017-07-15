@@ -1,0 +1,13 @@
+alias: Master Bedroom Pico On
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    from: '0'
+    to: '1'
+action:
+  - service: switch.turn_on
+    entity_id: switch.master_bedroom_lights_switch
+  - service: light.turn_on
+    entity_id: light.master_bedroom_light_dimmer
