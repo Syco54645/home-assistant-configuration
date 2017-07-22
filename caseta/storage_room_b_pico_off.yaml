@@ -1,0 +1,11 @@
+alias: Storage Room B Pico Off
+hide_entity: True
+initial_state: True
+trigger:
+  - platform: state
+    entity_id: sensor.storage_room_b_pico
+    from: '0'
+    to: '4'
+action:
+  - service: switch.turn_off
+    entity_id: switch.storage_room_b_light_switch
