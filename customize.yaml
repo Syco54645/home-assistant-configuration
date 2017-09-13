@@ -50,6 +50,7 @@ sensor.living_room_door_sensor_clock:
   hidden: true
 sensor.living_room_door_sensor_sourcenodeid:
   hidden: true
+
 ######### Go Control Motion ##########
 sensor.gocontrol_pir_1_alarm_level:
   icon: mdi:security
@@ -71,6 +72,88 @@ sensor.linear_wapirz1_motion_sensor_alarm_level:
   hidden: true
 sensor.linear_wapirz1_motion_sensor_sourcenodeid:
   hidden: true
+
+######### Monoprice Door ##########
+sensor.basement_office_door_status:
+  friendly_name: Basement Office Door Status
+  icon: mdi:glassdoor
+sensor.basement_office_door_alarm_level:
+  friendly_name: Basement Office Door
+  icon: mdi:glassdoor
+  hidden: true
+binary_sensor.basement_office_door_sensor:
+  hidden: true
+sensor.basement_office_door_access_control:
+  hidden: true
+sensor.basement_office_door_appliance:
+  hidden: true
+sensor.basement_office_door_emergency:
+  hidden: true
+sensor.basement_office_door_power_management:
+  hidden: true
+sensor.basement_office_door_alarm_type:
+  hidden: true
+sensor.basement_office_door_burglar:
+  hidden: true
+sensor.basement_office_door_clock:
+  hidden: true
+sensor.basement_office_door_sourcenodeid:
+  hidden: true
+
+sensor.sunken_room_door_status:
+  friendly_name: Sunken Room Door Status
+  icon: mdi:glassdoor
+sensor.sunken_room_door_alarm_level:
+  friendly_name: Sunken Room Door
+  icon: mdi:glassdoor
+  hidden: true
+binary_sensor.sunken_room_door_sensor:
+  hidden: true
+sensor.sunken_room_door_access_control:
+  hidden: true
+sensor.sunken_room_door_appliance:
+  hidden: true
+sensor.sunken_room_door_emergency:
+  hidden: true
+sensor.sunken_room_door_power_management:
+  hidden: true
+sensor.sunken_room_door_alarm_type:
+  hidden: true
+sensor.sunken_room_door_burglar:
+  hidden: true
+sensor.sunken_room_door_clock:
+  hidden: true
+sensor.sunken_room_door_sourcenodeid:
+  hidden: true
+
+sensor.family_room_door_status:
+  friendly_name: Family Room Door Status
+  icon: mdi:glassdoor
+sensor.family_room_door_alarm_level:
+  friendly_name: Family Room Door
+  icon: mdi:glassdoor
+  hidden: true
+binary_sensor.family_room_door_sensor:
+  hidden: true
+sensor.family_room_door_access_control:
+  hidden: true
+sensor.family_room_door_appliance:
+  hidden: true
+sensor.family_room_door_emergency:
+  hidden: true
+sensor.family_room_door_power_management:
+  hidden: true
+sensor.family_room_door_alarm_type:
+  hidden: true
+sensor.family_room_door_burglar:
+  hidden: true
+sensor.family_room_door_clock:
+  hidden: true
+sensor.family_room_door_sourcenodeid:
+  hidden: true
+sensor.family_room_door_system:
+  hidden: true
+
 
 ######### Hide Extra Sensors ##########
 binary_sensor.linear_wapirz1_motion_sensor_sensor:
@@ -103,6 +186,17 @@ sensor.living_room_thermostat_temperature:
 ######### Hide Extra Dark Sky ##########
 sensor.dark_sky_cloud_coverage:
   hidden: true
+sensor.dark_sky_pressure:
+  hidden: true
+sensor.dark_sky_wind_bearing:
+  hidden: true
+sensor.dark_sky_wind_speed:
+  hidden: true
+sensor.dark_sky_icon:
+  hidden: true
+
+sensor.date__time:
+  hidden: true
 
 ######### Nest Protect ##########
 sensor.family_room_nest_protect_smoke_status:
@@ -133,4 +227,10 @@ sensor.kitchen_light_pico:
 sensor.basement_lights_pico:
   hidden: true
 sensor.living_room_pico:
+  hidden: true
+sensor.game_room_pico:
+  hidden: true
+sensor.master_bedroom_pico:
+  hidden: true
+sensor.storage_room_b_pico:
   hidden: true

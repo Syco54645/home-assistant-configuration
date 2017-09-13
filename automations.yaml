@@ -138,6 +138,18 @@
     entity_id: sensor.deck_door_status
     from: 'closed'
     to: 'open'
+  - platform: state
+    entity_id: sensor.basement_office_door_status
+    from: 'closed'
+    to: 'open'
+  - platform: state
+    entity_id: sensor.sunken_room_door_alarm_level
+    from: 'closed'
+    to: 'open'
+  - platform: state
+    entity_id: sensor.family_room_door_alarm_level
+    from: 'closed'
+    to: 'open'
   condition:
     condition: state
     entity_id: alarm_control_panel.ha_alarm
@@ -155,11 +167,21 @@
     from: 'armed_away'
     to: 'triggered'
   action:
-  - service: script.turn_on
-    entity_id: script.light_flash
+  #- service: script.turn_on
+  #  entity_id: script.light_flash
+
+### Trigger Pushover
+- alias: Triggered Pushover
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    to: 'triggered'
+  action:
   - service: notify.frank_pushover
     data:
       message: 'Home Alarm Triggered {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+
 #### Alarm disarmed, switch to normal
 - alias: Disarmed Off
   hide_entity: true
@@ -181,16 +203,16 @@
       data:
         message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
-- alias: Test Pushover
-  hide_entity: true
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.ha_alarm
-    state: 'disarmed'
-  action:
-    - service: notify.frank_pushover
-      data:
-        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
+#- alias: Test Pushover
+#  hide_entity: true
+#  trigger:
+#    platform: state
+#    entity_id: alarm_control_panel.ha_alarm
+#    state: 'disarmed'
+#  action:
+#    - service: notify.frank_pushover
+#      data:
+#        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
 - !include caseta/basement_pico_on.yaml
 - !include caseta/basement_pico_off.yaml

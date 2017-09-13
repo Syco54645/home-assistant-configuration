@@ -60,6 +60,9 @@ alarm_wrapper:
   - alarm_control_panel.ha_alarm
   - sensor.living_room_door_status
   - sensor.deck_door_status
+  - sensor.basement_office_door_status
+  - sensor.sunken_room_door_status
+  - sensor.family_room_door_status
   - sensor.gocontrol_motion
   - sensor.ssl_certificate_expiry
   name: Home Alarm System
