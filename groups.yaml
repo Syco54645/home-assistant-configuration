@@ -1,7 +1,8 @@
 lr_light_slaves:
   entities:
   - light.ge_appliances_zll_light_00038784_1
-  - light.ge_appliances_zll_light_0005db57_1
+  #- light.ge_appliances_zll_light_0005db57_1
+  - light.living_room_chair_level
   name: Living Room Lights
   view: false
 
