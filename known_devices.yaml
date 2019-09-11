@@ -1,20 +1,3 @@
-
-android9190877cf1e0284f:
-  hide_if_away: false
-  mac: 64:BC:0C:44:B4:B5
-  name: Jess 5x
-  picture:
-  track: true
-  vendor: LG Electronics (Mobile Communications)
-
-android317bb99286d305e1:
-  hide_if_away: false
-  mac: 64:BC:0C:65:7A:9A
-  name: Frank 5x
-  picture:
-  track: true
-  vendor: LG Electronics (Mobile Communications)
-
 bedroom:
   hide_if_away: false
   mac: AC:3A:7A:A0:FD:59

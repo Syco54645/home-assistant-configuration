@@ -214,6 +214,101 @@
 #      data:
 #        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
 
+
+- id: roku_lr_light_on
+  alias: Use Roku to Turn on LR Lights
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Info
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+
+- id: roku_lr_light_off
+  alias: Use Roku to Turn off LR Lights
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Rev
+  action:
+    service: light.turn_off
+    entity_id: group.lr_light_slaves
+
+- id: roku_lr_light_up
+  alias: Use Roku to Turn up LR Lights
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: OK
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data_template:
+      brightness: >
+        {% if state_attr('light.living_room_floor_lamps', 'brightness') is defined %}
+          {{ state_attr('light.living_room_floor_lamps', 'brightness') + 50 }}
+        {% else %}
+          50
+        {%endif %}
+
+- id: roku_lr_light_50
+  alias: Use Roku to Turn LR Lights to 50%
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Back
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data:
+      brightness: 90
+
+- id: roku_lr_light_down
+  alias: Use Roku to Turn down LR Lights
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: InstantReplay
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data_template:
+      brightness: >
+        {% if state_attr('light.living_room_floor_lamps', 'brightness') is defined %}
+          {{ state_attr('light.living_room_floor_lamps', 'brightness') - 50 }}
+        {%endif %}
+
+- id: roku_lr_light_down_max
+  alias: Use Roku to Turn down LR Lights to lowest
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Search
+  action:
+    service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data:
+      brightness: 1
+
 - !include caseta/basement_pico_on.yaml
 - !include caseta/basement_pico_off.yaml
 - !include caseta/basement_on.yaml

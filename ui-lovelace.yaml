@@ -1,0 +1,254 @@
+title: Home Assistant
+resources:
+  - url: /community_plugin/weather-card/weather-card.js
+    type: module
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+views:
+  - badges:
+#      - binary_sensor.updater
+#      - binary_sensor.home_away
+#      - >-
+#        binary_sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_sensor
+#      - >-
+#        binary_sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_sensor_2
+#      - >-
+#        binary_sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_sensor
+#      - binary_sensor.vision_security_zg8101_garage_door_detector_sensor
+#      - binary_sensor.vision_security_zd2102_eu_door_window_sensor_sensor
+#      - binary_sensor.vision_security_zd2102_eu_door_window_sensor_sensor_2
+#      - binary_sensor.vision_security_zd2102_eu_door_window_sensor_sensor_3
+#      - sensor.date_time
+#      - sensor.floor_lamps_remote_1
+#      - sensor.hallway_nest_protect_color_status
+#      - sensor.home_eta
+#      - sensor.basement_nest_protect_color_status
+#      - sensor.family_room_nest_protect_color_status
+#      - sensor.hacs
+#      - sensor.netgear_r7000_r7000_bytes_received
+#      - sensor.netgear_r7000_r7000_bytes_sent
+#      - sensor.netgear_r7000_r7000_kbyte_sec_sent
+#      - sensor.netgear_r7000_r7000_packets_received
+#      - sensor.netgear_r7000_r7000_packets_sec_received
+#      - sensor.netgear_r7000_r7000_packets_sent
+#      - sensor.netgear_r7000_r7000_packets_sec_sent
+#      - sensor.netgear_r7000_r7000_kbyte_sec_received
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_alarm_type
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_alarm_level
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_sourcenodeid
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_burglar
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_alarm_type_2
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_alarm_level_2
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_sourcenodeid_2
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_burglar_2
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_temperature
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_alarm_type
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_alarm_level
+#      - >-
+#        sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_sourcenodeid
+#      - sensor.linear_nortek_security_control_llc_wapirz_1_motion_sensor_burglar
+#      - sensor.vision_security_zg8101_garage_door_detector_alarm_type
+#      - sensor.vision_security_zg8101_garage_door_detector_alarm_level
+#      - sensor.vision_security_zg8101_garage_door_detector_sourcenodeid
+#      - sensor.vision_security_zg8101_garage_door_detector_burglar
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_type
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_level
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_sourcenodeid_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_access_control_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_burglar_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_power_management_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_emergency_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_appliance_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_type_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_level_2
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_sourcenodeid_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_access_control_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_burglar_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_emergency_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_appliance_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_type_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_alarm_level_3
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_sourcenodeid
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_access_control
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_burglar
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_power_management
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_system
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_emergency
+#      - sensor.vision_security_zd2102_eu_door_window_sensor_appliance
+    cards:
+      - entities:
+          - light.ge_appliances_zll_light_00038784_1
+          - light.living_room_floor_lamps
+          - light.livingroom_lights
+        show_header_toggle: true
+        title: Livingroom Lights
+        type: entities
+      - entities:
+          - light.front_lamp_post_level
+          - light.front_porch_light_level
+          - light.front_house_lights
+        show_header_toggle: true
+        title: Front Lights
+        type: entities
+      - entities:
+          - light.basement_light_dimmer
+          - switch.basement_playroom_lights_switch
+        show_header_toggle: true
+        title: Basement Playroom Lights
+        type: entities
+      - entities:
+          - light.kitchen_light_dimmer
+          - switch.sunken_room_lights_switch
+        show_header_toggle: true
+        title: Kitchen Lights
+        type: entities
+      - entities:
+          - light.game_room_dimmer
+          - switch.game_room_lights_switch
+        show_header_toggle: true
+        title: Game Room Lights
+        type: entities
+      - entities:
+          - light.master_bedroom_light_dimmer
+          - switch.master_bedroom_lights_switch
+        show_header_toggle: true
+        title: Master Bedroom Room Lights
+        type: entities
+      - entities:
+          - light.office_desk_dimmer
+        title: Light
+        type: entities
+      - entity: climate.living_room
+        type: thermostat
+      - entities:
+          - sensor.living_room_thermostat_humidity
+          - sensor.living_room_thermostat_temperature
+          - sensor.living_room_thermostat_target
+        show_header_toggle: false
+        title: Climate
+        type: entities
+      - entities:
+          - switch.storage_room_b_l_switch
+          - switch.game_room_accent_switch
+        title: Switch
+        type: entities
+    path: default_view
+    title: Home
+  - badges: []
+    cards:
+      - entities:
+          - sensor.living_room_door_status
+          - sensor.deck_door_status
+          - sensor.basement_office_door_status
+          - sensor.sunken_room_door_status
+          - sensor.family_room_door_status
+          - sensor.gocontrol_motion
+          - sensor.ssl_certificate_expiry
+        show_header_toggle: false
+        title: Home Alarm System
+        type: entities
+      - entity: alarm_control_panel.ha_alarm
+        type: alarm-panel
+      - entities:
+          - sensor.family_room_nest_protect_smoke_status
+          - sensor.hallway_nest_protect_smoke_status
+          - sensor.basement_nest_protect_smoke_status
+          - sensor.family_room_nest_protect_co_status
+          - sensor.hallway_nest_protect_co_status
+          - sensor.basement_nest_protect_co_status
+          - binary_sensor.family_room_nest_protect_online
+          - binary_sensor.hallway_nest_protect_online
+          - binary_sensor.basement_nest_protect_online
+        show_header_toggle: false
+        title: Smoke Detector
+        type: entities
+    path: alarm_tab
+    title: Alarm
+  - badges: []
+    cards:
+      - type: custom:weather-card
+        entity: weather.home
+        name: Weather
+        current: true
+        details: true
+        forecast: true
+      - entities:
+          - sensor.dark_sky_temperature
+          - sensor.dark_sky_humidity
+          - sensor.dark_sky_precip_probability
+          - sensor.dark_sky_precip
+          - sensor.dark_sky_apparent_temperature
+          - sensor.dark_sky_precip_intensity
+          - sensor.dark_sky_summary
+          - sun.sun
+        show_header_toggle: false
+        title: Weather
+        type: entities
+    panel: false
+    path: weather_tab
+    title: Weather
+  - badges: []
+    cards:
+      - entities:
+          - automation.use_roku_to_turn_down_lr_lights
+          - automation.use_roku_to_turn_down_lr_lights_to_lowest
+          - automation.triggered_pushover
+          - automation.use_roku_to_turn_on_lr_lights
+          - automation.use_roku_to_turn_off_lr_lights
+          - automation.use_roku_to_turn_up_lr_lights
+          - automation.use_roku_to_turn_lr_lights_to_50
+        title: Automation
+        type: entities
+      - entities:
+          - input_number.light_step
+          - input_number.light_minimum
+          - input_number.light_maximum
+        title: Input number
+        type: entities
+      - entities:
+          - remote.livingroom
+        title: Remote
+        type: entities
+      - entities:
+          - scene.test
+        title: Scene
+        type: entities
+      - entities:
+          - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+          - zwave.game_room_lights
+          - zwave.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor
+          - >-
+            zwave.linear_nortek_security_control_llc_wadwaz_1_door_window_sensor_2
+          - zwave.linear_nortek_security_control_llc_wapirz_1_motion_sensor
+          - zwave.aeon_labs_dsc26103_micro_switch_2nd_edition
+          - zwave.aeon_labs_zw117_range_extender_6
+          - >-
+            zwave.linear_nortek_security_control_llc_lb60z_1_dimmable_led_light_bulb
+          - zwave.aeon_labs_dsc26103_micro_switch_2nd_edition_2
+          - zwave.aeon_labs_dsc26103_micro_switch_2nd_edition_3
+          - zwave.storage_room_b_l
+          - zwave.inovelli_nzw36_1_channel_smart_plug_in_module
+          - zwave.vision_security_zg8101_garage_door_detector
+          - zwave.vision_security_zd2102_eu_door_window_sensor
+          - zwave.vision_security_zd2102_eu_door_window_sensor_2
+          - zwave.vision_security_zd2102_eu_door_window_sensor_3
+          - >-
+            zwave.linear_nortek_security_control_llc_lb60z_1_dimmable_led_light_bulb_2
+        title: Z-Wave
+        type: entities
+    panel: false
+    path: default_view1
+    title: Junk

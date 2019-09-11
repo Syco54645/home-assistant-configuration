@@ -17,17 +17,22 @@ homeassistant:
 
 # Enables the frontend
 frontend:
+  themes: !include themes.yaml
+
+lovelace:
+  mode: yaml
 
 # Enables configuration UI
 config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret api_password
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  # Uncomment this if you are using SSL or running in Docker etc
   base_url: !secret dns_host
+  server_port: 8123
+  #base_url: 192.168.1.100 # todo switch back to secret and use ssl
+  #server_port: 8124 # todo switch back to secret and use ssl
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -53,7 +58,7 @@ sun:
 
 # Text to speech
 tts:
-  platform: google
+  platform: google_translate
 
 # wink hub
 #wink:
@@ -64,9 +69,9 @@ tts:
 #  port: !secret mqtt_port
 #  client_id: home-assistant-1
 
-mqtt:
-  broker: 192.168.1.133
-  port: 9898
+#mqtt:
+#  broker: 192.168.1.133
+#  port: 9898
 
 # nest
 nest:
@@ -78,14 +83,14 @@ ifttt:
   key: !secret ifttt_key
 
 #lutron caseta
-caseta:
+lutron_caseta_pro:
   bridges:
     - host: !secret caseta_hub_ip
+      mac: !secret caseta_hub_mac
 
 #zwave
 zwave:
   usb_path: /dev/ttyUSB0
-  new_entity_ids: true
   device_config:
     light.front_lamp_post_level:
       polling_intensity: 1
@@ -105,6 +110,29 @@ zha:
   usb_path: /dev/ttyUSB1
   database_path: /config/zigbee.db
 
+hacs:
+  token: !secret hacs_token
+
+remote:
+  - platform: harmony
+    name: Livingroom
+    host: 192.168.1.129
+# emulated_hue:
+#   host_ip: 192.168.1.100
+#   listen_port: 8065
+#   advertise_ip: 192.168.1.100
+#   advertise_port: 8061
+#   upnp_bind_multicast: true
+#   expose_by_default: true
+#   exposed_domains:
+#     - group
+emulated_roku:
+  servers:
+    - name: Fake Roku
+      host_ip: 192.168.1.100
+      listen_port: 8061
+      advertise_port: 8065
+
 alarm_control_panel:
   platform: manual
   code: !secret alarm_code
@@ -121,15 +149,37 @@ device_tracker: !include device_trackers.yaml
 script: !include scripts.yaml
 notify: !include notifiers.yaml
 
-snips:
-  intents:
-    LightsIntent:
-      action:
-        - service_template: >
-            {% if state == 'on' %}
-              light.turn_on
-            {% else %}
-              light.turn_off
-            {% endif %}
-          data_template:
-            entity_id: group.{{ location | replace(" ", "_") }}
+input_number:
+  light_step:
+    name: 'Step the lights this much'
+    initial: 20
+    min: 1
+    max: 64
+    step: 50
+
+  light_minimum:
+    name: 'No dimmer than this'
+    initial: 5
+    min: 0
+    max: 255
+    step: 50
+
+  light_maximum:
+    name: 'No brighter than this'
+    initial: 255
+    min: 50
+    max: 255
+    step: 50
+
+#snips:
+#  intents:
+#    LightsIntent:
+#      action:
+#        - service_template: >
+#            {% if state == 'on' %}
+#              light.turn_on
+#            {% else %}
+#              light.turn_off
+#            {% endif %}
+#          data_template:
+#            entity_id: group.{{ location | replace(" ", "_") }}

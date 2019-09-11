@@ -35,8 +35,6 @@
   - temperature
   - apparent_temperature
   - humidity
-  - temperature_max
-  - temperature_min
   - cloud_cover
   - icon
   - wind_bearing
