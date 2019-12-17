@@ -322,6 +322,7 @@
 - !include caseta/gameroom_off.yaml
 - !include caseta/master_bedroom_pico_on.yaml
 - !include caseta/master_bedroom_pico_off.yaml
+- !include caseta/master_bedroom_pico_favorite.yaml
 - !include caseta/master_bedroom_on.yaml
 - !include caseta/master_bedroom_off.yaml
 - !include caseta/kitchen_pico_on.yaml
