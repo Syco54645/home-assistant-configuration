@@ -42,3 +42,15 @@
 #   payload_off: "OFF"
 #   optimistic: false
 #   retain: true
+
+- platform: group
+  name: Front House Lights
+  entities:
+    - light.front_lamp_post_level
+    - light.front_porch_light_level
+
+- platform: group
+  name: Livingroom Lights
+  entities:
+    - light.ge_appliances_zll_light_00038784_1
+    - light.living_room_floor_lamps

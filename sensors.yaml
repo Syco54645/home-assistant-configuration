@@ -1,22 +1,22 @@
 - platform: template
   sensors:
     deck_door_status:
-      value_template: "{%if states.sensor.deck_door_sensor_alarm_level.state == '255' %}open{% elif states.sensor.deck_door_sensor_alarm_level.state == '0' %}closed{% endif %}"
+      value_template: "{%if states('sensor.deck_door_sensor_alarm_level') | int == 255 %}open{% elif states('sensor.deck_door_sensor_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Deck Door Status"
     living_room_door_status:
-      value_template: "{%if states.sensor.living_room_door_sensor_alarm_level.state == '255' %}open{% elif states.sensor.living_room_door_sensor_alarm_level.state == '0' %}closed{% endif %}"
+      value_template: "{%if states('sensor.living_room_door_sensor_alarm_level') | int == 255 %}open{% elif states('sensor.living_room_door_sensor_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Living Room Door Status"
     gocontrol_motion:
-      value_template: "{%if states.sensor.linear_wapirz1_motion_sensor_alarm_level.state == '255' %}motion detected{% elif states.sensor.linear_wapirz1_motion_sensor_alarm_level.state == '0' %}standby{% endif %}"
+      value_template: "{%if states('sensor.linear_wapirz1_motion_sensor_alarm_level') | int == 255 %}motion detected{% elif states('sensor.linear_wapirz1_motion_sensor_alarm_level') | int == 0 %}standby{% endif %}"
       friendly_name: "GoControl Motion"
     basement_office_door_status:
-      value_template: "{%if states.sensor.basement_office_door_alarm_level.state == '255' %}open{% elif states.sensor.basement_office_door_alarm_level.state == '0' %}closed{% endif %}"
+      value_template: "{%if states('sensor.basement_office_door_alarm_level') | int == 255 %}open{% elif states('sensor.basement_office_door_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Basement Office Door Status"
     sunken_room_door_status:
-      value_template: "{%if states.sensor.sunken_room_door_alarm_level.state == '255' %}open{% elif states.sensor.sunken_room_door_alarm_level.state == '0' %}closed{% endif %}"
+      value_template: "{%if states('sensor.sunken_room_door_alarm_level') | int == 255 %}open{% elif states('sensor.sunken_room_door_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Sunken Room Door Status"
     family_room_door_status:
-      value_template: "{%if states.sensor.family_room_door_alarm_level.state == '255' %}open{% elif states.sensor.family_room_door_alarm_level.state == '0' %}closed{% endif %}"
+      value_template: "{%if states('sensor.family_room_door_alarm_level') | int == 255 %}open{% elif states('sensor.family_room_door_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Family Room Door Status"
 - platform: time_date
   display_options:
@@ -35,8 +35,6 @@
   - temperature
   - apparent_temperature
   - humidity
-  - temperature_max
-  - temperature_min
   - cloud_cover
   - icon
   - wind_bearing

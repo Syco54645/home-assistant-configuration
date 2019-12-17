@@ -1,7 +1,7 @@
 lr_light_slaves:
   entities:
   - light.ge_appliances_zll_light_00038784_1
-  - light.floor_lamps
+  - light.living_room_floor_lamps
   name: Living Room Lights
   view: false
 
@@ -11,7 +11,7 @@ front_light_slaves:
   - light.front_porch_light_level
   name: Front Lights
   view: false
-
+   
 basement_light_slaves:
   entities:
   - light.basement_light_dimmer
@@ -46,8 +46,6 @@ weather_wrapper:
   - sensor.dark_sky_humidity
   - sensor.dark_sky_precip_probability
   - sensor.dark_sky_precip
-  - sensor.dark_sky_daily_high_temperature
-  - sensor.dark_sky_daily_low_temperature
   - sensor.dark_sky_apparent_temperature
   - sensor.dark_sky_precip_intensity
   - sensor.dark_sky_summary
