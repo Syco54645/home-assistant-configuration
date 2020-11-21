@@ -8,4 +8,4 @@ trigger:
     to: '4'
 action:
   - service: switch.turn_off
-    entity_id: switch.storage_room_b_light_switch
+    entity_id: switch.storage_room_b_l_switch
