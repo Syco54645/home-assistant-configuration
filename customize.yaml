@@ -1,7 +1,7 @@
 ######### Lights ##########
 light.ge_appliances_zll_light_00038784_1:
-  friendly_name: Living Room Door
-  emulated_hue_name: Living Room Door Hue
+  friendly_name: Living Room TV
+  emulated_hue_name: Living Room TV Hue
 # light.ge_appliances_zll_light_0005db57_1:
 #   friendly_name: Living Room Chair
 #   emulated_hue_name: Living Room Chair Hue

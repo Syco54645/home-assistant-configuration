@@ -3,42 +3,36 @@ lr_light_slaves:
   - light.ge_appliances_zll_light_00038784_1
   - light.living_room_floor_lamps
   name: Living Room Lights
-  view: false
 
 front_light_slaves:
   entities:
   - light.front_lamp_post_level
   - light.front_porch_light_level
   name: Front Lights
-  view: false
-   
+
 basement_light_slaves:
   entities:
   - light.basement_light_dimmer
   - switch.basement_playroom_lights_switch
   name: Basement Playroom Lights
-  view: false
 
 kitchen_light_slaves:
   entities:
   - light.kitchen_light_dimmer
   - switch.sunken_room_lights_switch
   name: Kitchen Lights
-  view: false
 
 game_room_light_slaves:
   entities:
   - light.game_room_dimmer
   - switch.game_room_lights_switch
   name: Game Room Lights
-  view: false
 
 master_bedroom_room_light_slaves:
   entities:
   - light.master_bedroom_light_dimmer
   - switch.master_bedroom_lights_switch
   name: Master Bedroom Room Lights
-  view: false
 
 weather_wrapper:
   entities:
@@ -51,7 +45,6 @@ weather_wrapper:
   - sensor.dark_sky_summary
   - sun.sun
   name: Weather
-  view: false
 
 alarm_wrapper:
   entities:
@@ -64,7 +57,6 @@ alarm_wrapper:
   - sensor.gocontrol_motion
   - sensor.ssl_certificate_expiry
   name: Home Alarm System
-  view: false
 smoke_detector_wrapper:
   entities:
   - sensor.family_room_nest_protect_smoke_status
@@ -77,7 +69,6 @@ smoke_detector_wrapper:
   - binary_sensor.hallway_nest_protect_online
   - binary_sensor.basement_nest_protect_online
   name: Smoke Detector
-  view: false
 
 
 climate:
@@ -90,14 +81,12 @@ climate:
 #tabs
 alarm_tab:
   name: Alarm
-  view: true
   entities:
     - group.alarm_wrapper
     - group.smoke_detector_wrapper
 
 default_view1:
   name: Home
-  view: true
   entities:
   - group.lr_light_slaves
   - group.front_light_slaves
@@ -105,6 +94,5 @@ default_view1:
 
 weather_tab:
   name: Weather
-  view: true
   entities:
   - group.weather_wrapper

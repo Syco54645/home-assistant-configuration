@@ -136,7 +136,7 @@ emulated_roku:
 alarm_control_panel:
   platform: manual
   code: !secret alarm_code
-  pending_time: 10
+  arming_time: 10
   trigger_time: 10
   disarm_after_trigger: false
 

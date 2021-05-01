@@ -2,8 +2,8 @@
 #   name: "Livingroom Chair"
 #   state_topic: "wink/1/1"
 #   command_topic: "wink/1/1/set"
-#   brightness_state_topic: "wink/1/2"  
-#   brightness_command_topic: "wink/1/2/set"  
+#   brightness_state_topic: "wink/1/2"
+#   brightness_command_topic: "wink/1/2/set"
 #   qos: 0
 #   payload_on: "ON"
 #   payload_off: "OFF"
@@ -13,8 +13,8 @@
 #   name: "Livingroom Door"
 #   state_topic: "wink/2/1"
 #   command_topic: "wink/2/1/set"
-#   brightness_state_topic: "wink/2/2"  
-#   brightness_command_topic: "wink/2/2/set"  
+#   brightness_state_topic: "wink/2/2"
+#   brightness_command_topic: "wink/2/2/set"
 #   qos: 0
 #   payload_on: "ON"
 #   payload_off: "OFF"
@@ -24,8 +24,8 @@
 #   name: "Front Lamp Post"
 #   state_topic: "wink/3/1"
 #   command_topic: "wink/3/1/set"
-#   brightness_state_topic: "wink/3/2"  
-#   brightness_command_topic: "wink/3/2/set"  
+#   brightness_state_topic: "wink/3/2"
+#   brightness_command_topic: "wink/3/2/set"
 #   qos: 0
 #   payload_on: "ON"
 #   payload_off: "OFF"
@@ -35,8 +35,8 @@
 #   name: "Front Porch"
 #   state_topic: "wink/4/1"
 #   command_topic: "wink/4/1/set"
-#   brightness_state_topic: "wink/4/2"  
-#   brightness_command_topic: "wink/4/2/set"  
+#   brightness_state_topic: "wink/4/2"
+#   brightness_command_topic: "wink/4/2/set"
 #   qos: 0
 #   payload_on: "ON"
 #   payload_off: "OFF"
