@@ -6,6 +6,10 @@ resources:
     type: module
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
+  - url: /hacsfiles/Homekit-panel-card/homekit-panel-card.js
+    type: module
+  - url: /hacsfiles/light-popup-card/light-popup-card.js
+    type: module
 views:
   - badges:
 #      - binary_sensor.updater
