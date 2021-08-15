@@ -1,11 +1,11 @@
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
-  # Location required to calculate the time the sun rises and sets
+  ## Location required to calculate the time the sun rises and sets
   latitude: !secret latitude_loc_home
   longitude: !secret longitude_loc_home
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 363
+  elevation: 351
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -109,6 +109,8 @@ zwave:
 zha:
   usb_path: /dev/ttyUSB1
   database_path: /config/zigbee.db
+
+mobile_app:
 
 remote:
   - platform: harmony
