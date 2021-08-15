@@ -35,3 +35,16 @@
 #    - service: script.turn_on
 #      data:
 #        entity_id: script.light_flash
+
+
+master_bedroom_bedtime:
+  alias: Master Bedroom Bedtime
+  #hide_entity: True
+  #initial_state: True
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.master_bedroom_lights_switch
+    - service: light.turn_on
+      entity_id: light.master_bedroom_light_dimmer
+      data:
+        brightness_pct: 12
