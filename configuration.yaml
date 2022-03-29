@@ -143,6 +143,7 @@ binary_sensor: !include binary_sensors.yaml
 light: !include lights.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
+scene: !include scenes.yaml
 sensor: !include sensors.yaml
 device_tracker: !include device_trackers.yaml
 script: !include scripts.yaml
