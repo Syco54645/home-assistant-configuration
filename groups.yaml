@@ -1,7 +1,7 @@
 lr_light_slaves:
   entities:
-  - light.ge_appliances_zll_light_00038784_1
-  - light.living_room_floor_lamps
+  - light.living_room_tv_lamp
+  - light.living_room_door_chair_lamp
   name: Living Room Lights
 
 front_light_slaves:
