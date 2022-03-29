@@ -18,7 +18,7 @@ basement_light_slaves:
 
 kitchen_light_slaves:
   entities:
-  - light.kitchen_light_dimmer
+  - light.kitchen_kitchen_light_dimmer
   - switch.sunken_room_lights_switch
   name: Kitchen Lights
 
