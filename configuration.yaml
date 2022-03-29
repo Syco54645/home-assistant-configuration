@@ -100,10 +100,6 @@ zwave:
       polling_intensity: 1
       refresh_value: true
       delay: 1
-    light.living_room_chair_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
 
 #zigbee
 zha:
