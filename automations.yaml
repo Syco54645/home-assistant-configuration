@@ -338,30 +338,30 @@
     data:
       brightness: 10
   id: c7cdda5a52ee4874be6e37131222d7db
-- alias: Game Room Dimmer On
-  hide_entity: true
-  initial_state: true
+- id: 988f9522b6fd4110ada91a44393a0a7e
+  alias: Arcade Dimmer On
   trigger:
   - platform: state
-    entity_id: light.game_room_dimmer
+    entity_id: light.arcade_game_room_dimmer
     from: 'off'
     to: 'on'
   action:
-    service: switch.turn_on
+  - service: switch.turn_on
     entity_id: switch.game_room_lights_switch
-  id: 988f9522b6fd4110ada91a44393a0a7e
-- alias: Game Room Dimmer Off
   hide_entity: true
   initial_state: true
+- id: 4f2f3ca3d5c4455d808b15642bbc6baf
+  alias: Arcade Dimmer Off
   trigger:
   - platform: state
-    entity_id: light.game_room_dimmer
+    entity_id: light.arcade_game_room_dimmer
     from: 'on'
     to: 'off'
   action:
-    service: switch.turn_off
+  - service: switch.turn_off
     entity_id: switch.game_room_lights_switch
-  id: 4f2f3ca3d5c4455d808b15642bbc6baf
+  hide_entity: true
+  initial_state: true
 - alias: Master Bedroom Pico On
   hide_entity: true
   initial_state: true
@@ -430,10 +430,6 @@
     service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
   id: 7ac7e942c36e424199970b56699b0106
-- id: cafa15dac2224d39a0493e1c3c9ae307
-- id: f7b549518c1a40b38a7a5a9e5e7ec230
-- id: 2d38cc0e36304695bd59aaab2724a76c
-- id: a96532f8a12d4643adbe2a1a7a28469f
 - alias: Storage Room B Pico On
   hide_entity: true
   initial_state: true
