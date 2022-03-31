@@ -59,15 +59,15 @@
     data:
       brightness: 255
   id: f7a4ca88f9774d2d816a4527e2efba53
-- alias: Lights Front Arrival
-  initial_state: true
+- id: 4b33706b5e0a49e98f0b8f3222ce8dc8
+  alias: Lights Front Arrival
   trigger:
-    platform: state
-    entity_id: device_tracker.android317bb99286d305e1, device_tracker.android9190877cf1e0284f
+  - platform: state
+    entity_id: sensor.frank_pixel_5a_wifi_connection
     from: not_home
     to: home
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
       entity_id: group.front_light_slaves
@@ -76,11 +76,12 @@
       after: sunset
       after_offset: '-1:00:00'
   action:
-    service: light.turn_on
-    entity_id: group.front_light_slaves
+  - service: light.turn_on
     data:
-      brightness: 255
-  id: 4b33706b5e0a49e98f0b8f3222ce8dc8
+      brightness_pct: 100
+    target:
+      entity_id: group.front_light_slaves
+  initial_state: true
 - alias: Light Front House off after 15m after 11pm
   initial_state: true
   trigger:
@@ -431,28 +432,6 @@
   - service: switch.turn_off
     entity_id: switch.storage_room_b_l_switch
   id: 5bf2dc168cab4d1486a3c60b94c02ae9
-- alias: Game Room Pico On
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: sensor.game_room_pico
-    from: '0'
-    to: '1'
-  action:
-  - service: switch.turn_on
-    entity_id: switch.game_room_accent_switch
-  id: a5b81fed9ce74fe5bbd38b75c8d07893
-- alias: Game Room Pico Off
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: sensor.game_room_pico
-    from: '0'
-    to: '4'
-  action:
-  - service: switch.turn_off
-    entity_id: switch.game_room_accent_switch
-  id: 51b682241172474db87f363dbabf2bda
 - id: '1648573779270'
   alias: Kitchen Light On
   description: Used to interface between the Caseta and Zwave lights in the kitchen.
