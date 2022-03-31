@@ -347,39 +347,42 @@
   - service: switch.turn_off
     entity_id: switch.game_room_lights_switch
   initial_state: true
-- alias: Master Bedroom Pico On
-  initial_state: true
+- id: 948210e124694d95ba05e9e62a9f9ae0
+  alias: Master Bedroom Pico On
   trigger:
-  - platform: state
-    entity_id: sensor.master_bedroom_pico
-    from: '0'
-    to: '1'
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
   action:
   - service: switch.turn_on
     entity_id: switch.master_bedroom_lights_switch
   - service: light.turn_on
     entity_id: light.master_bedroom_light_dimmer
-  id: 948210e124694d95ba05e9e62a9f9ae0
-- alias: Master Bedroom Pico Off
   initial_state: true
+- id: c0a5bcf2c9d449029b686bd884b62b82
+  alias: Master Bedroom Pico Off
   trigger:
-  - platform: state
-    entity_id: sensor.master_bedroom_pico
-    from: '0'
-    to: '4'
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
   action:
   - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
   - service: light.turn_off
     entity_id: light.master_bedroom_light_dimmer
-  id: c0a5bcf2c9d449029b686bd884b62b82
-- alias: Master Bedroom Pico Dim
   initial_state: true
+- id: 413ed1bd646c4b88bc129a6b91da28bc
+  alias: Master Bedroom Pico Dim
   trigger:
-  - platform: state
-    entity_id: sensor.master_bedroom_pico
-    from: '0'
-    to: '2'
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
   action:
   - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
@@ -387,29 +390,29 @@
     entity_id: light.master_bedroom_light_dimmer
     data:
       brightness_pct: 30
-  id: 413ed1bd646c4b88bc129a6b91da28bc
-- alias: Basement Dimmer On
   initial_state: true
+- id: 1bb6a34fccf140cdb0be41a377503da1
+  alias: Master Dimmer On
   trigger:
   - platform: state
-    entity_id: light.master_bedroom_light_dimmer
+    entity_id: light.master_bedroom_master_bedroom_light_dimmer
     from: 'off'
     to: 'on'
   action:
-    service: switch.turn_on
+  - service: switch.turn_on
     entity_id: switch.master_bedroom_lights_switch
-  id: 1bb6a34fccf140cdb0be41a377503da1
-- alias: Basement Dimmer Off
   initial_state: true
+- id: 7ac7e942c36e424199970b56699b0106
+  alias: Master Dimmer Off
   trigger:
   - platform: state
-    entity_id: light.master_bedroom_light_dimmer
+    entity_id: light.master_bedroom_master_bedroom_light_dimmer
     from: 'on'
     to: 'off'
   action:
-    service: switch.turn_off
+  - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
-  id: 7ac7e942c36e424199970b56699b0106
+  initial_state: true
 - alias: Storage Room B Pico On
   initial_state: true
   trigger:
