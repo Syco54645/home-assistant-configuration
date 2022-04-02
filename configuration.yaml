@@ -83,10 +83,10 @@ ifttt:
   key: !secret ifttt_key
 
 #lutron caseta
-lutron_caseta_pro:
-  bridges:
-    - host: !secret caseta_hub_ip
-      mac: !secret caseta_hub_mac
+#lutron_caseta_pro:
+#  bridges:
+#    - host: !secret caseta_hub_ip
+#      mac: !secret caseta_hub_mac
 
 #zwave
 zwave:
