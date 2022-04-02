@@ -348,9 +348,12 @@
   - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
   - service: light.turn_on
-    entity_id: light.master_bedroom_light_dimmer
     data:
       brightness_pct: 30
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
   initial_state: true
 - id: 1bb6a34fccf140cdb0be41a377503da1
   alias: Master Bedroom Dimmer On
@@ -374,28 +377,30 @@
   - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
   initial_state: true
-- alias: Storage Room B Pico On
-  initial_state: true
+- id: 3da30d98d0a44f449d60a4bd0c6d3546
+  alias: Storage Room B Pico On
   trigger:
-  - platform: state
-    entity_id: sensor.storage_room_b_pico
-    from: '0'
-    to: '1'
+  - platform: device
+    device_id: 00c4bc059545c5b17dbd14384dfeb814
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
   action:
   - service: switch.turn_on
     entity_id: switch.storage_room_b_l_switch
-  id: 3da30d98d0a44f449d60a4bd0c6d3546
-- alias: Storage Room B Pico Off
   initial_state: true
+- id: 5bf2dc168cab4d1486a3c60b94c02ae9
+  alias: Storage Room B Pico Off
   trigger:
-  - platform: state
-    entity_id: sensor.storage_room_b_pico
-    from: '0'
-    to: '4'
+  - platform: device
+    device_id: 00c4bc059545c5b17dbd14384dfeb814
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
   action:
   - service: switch.turn_off
     entity_id: switch.storage_room_b_l_switch
-  id: 5bf2dc168cab4d1486a3c60b94c02ae9
+  initial_state: true
 - id: '1648573779270'
   alias: Kitchen Light On
   description: Used to interface between the Caseta and Zwave lights in the kitchen.

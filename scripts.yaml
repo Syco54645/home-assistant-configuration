@@ -4,9 +4,13 @@ master_bedroom_bedtime:
   - service: switch.turn_off
     entity_id: switch.master_bedroom_lights_switch
   - service: light.turn_on
-    entity_id: light.master_bedroom_light_dimmer
     data:
-      brightness_pct: 12
+      brightness_pct: 10
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  mode: single
 living_room_lights_100:
   alias: Living Room Lights 100%
   sequence:
