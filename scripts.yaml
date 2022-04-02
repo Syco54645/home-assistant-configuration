@@ -70,5 +70,12 @@ arcade_lights_100:
     target:
       area_id: arcade
       entity_id: switch.game_room_accent_switch
+  - service: light.turn_on
+    data:
+      transition: 0
+      brightness_pct: 100
+    target:
+      area_id: arcade
+      entity_id: light.arcade_game_room_dimmer
   mode: single
   icon: mdi:lightbulb-group

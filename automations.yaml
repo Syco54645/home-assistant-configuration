@@ -300,19 +300,20 @@
   - service: switch.turn_off
     entity_id: switch.basement_playroom_lights_switch
   initial_state: true
-- alias: Livingroom Pico Favorite Dim
-  initial_state: true
+- id: c7cdda5a52ee4874be6e37131222d7db
+  alias: Livingroom Pico Favorite Dim
   trigger:
-  - platform: state
-    entity_id: sensor.living_room_pico
-    from: '0'
-    to: '2'
+  - platform: device
+    device_id: ae9f10d6ddf333922f0f42d290840968
+    domain: lutron_caseta
+    type: press
+    subtype: stop
   action:
-    service: light.turn_on
+  - service: light.turn_on
     entity_id: group.lr_light_slaves
     data:
       brightness: 10
-  id: c7cdda5a52ee4874be6e37131222d7db
+  initial_state: true
 - id: 988f9522b6fd4110ada91a44393a0a7e
   alias: Arcade Dimmer On
   trigger:
