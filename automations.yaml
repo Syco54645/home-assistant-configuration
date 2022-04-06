@@ -180,60 +180,6 @@
     data:
       message: Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}
   id: 757ac7f6b0c84501bac45ba40d2cd9ba
-- id: roku_lr_light_on
-  alias: Use Roku to Turn on LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Info
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-- id: roku_lr_light_off
-  alias: Use Roku to Turn off LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Rev
-  action:
-    service: light.turn_off
-    entity_id: group.lr_light_slaves
-- id: roku_lr_light_up
-  alias: Use Roku to Turn up LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: OK
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-    data_template:
-      brightness: "{% if state_attr('light.living_room_floor_lamps', 'brightness')\
-        \ is defined %}\n  {{ state_attr('light.living_room_floor_lamps', 'brightness')\
-        \ + 50 }}\n{% else %}\n  50\n{%endif %}\n"
-- id: roku_lr_light_50
-  alias: Use Roku to Turn LR Lights to 50%
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Back
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-    data:
-      brightness: 90
 - id: roku_lr_light_down
   alias: Use Roku to Turn down LR Lights
   trigger:
@@ -244,26 +190,14 @@
       type: keypress
       key: InstantReplay
   action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-    data_template:
-      brightness: "{% if state_attr('light.living_room_floor_lamps', 'brightness')\
-        \ is defined %}\n  {{ state_attr('light.living_room_floor_lamps', 'brightness')\
-        \ - 50 }}\n{%endif %}\n"
-- id: roku_lr_light_down_max
-  alias: Use Roku to Turn down LR Lights to lowest
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Search
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
+  - service: light.turn_on
     data:
-      brightness: 1
+      brightness_step_pct: -10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
 - id: a6b702975ea846c6bf1b4789204d83e2
   alias: Basement Pico Fav
   trigger:
@@ -354,6 +288,8 @@
       entity_id:
       - light.master_bedroom_master_bedroom_light_dimmer
       area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
   initial_state: true
 - id: 1bb6a34fccf140cdb0be41a377503da1
   alias: Master Bedroom Dimmer On
@@ -464,3 +400,63 @@
     entity_id: switch.game_room_accent_switch
   mode: single
   initial_state: true
+- id: '1649131423463'
+  alias: Master Bedroom Pico Dim Hold
+  description: ''
+  trigger:
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: release
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: release
+    subtype: stop
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  - service: light.turn_on
+    data:
+      brightness_pct: 7
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  mode: single
+  initial_state: true
+- id: '1649208330166'
+  alias: Use Roku to Turn up LR Lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Back
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_step_pct: 10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
+  mode: single
