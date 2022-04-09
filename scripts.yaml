@@ -73,7 +73,7 @@ arcade_lights_100:
     data: {}
     target:
       area_id: arcade
-      entity_id: switch.game_room_accent_switch
+      entity_id: switch.game_room_accent_lights
   - service: light.turn_on
     data:
       transition: 0

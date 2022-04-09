@@ -13,7 +13,7 @@ front_light_slaves:
 basement_light_slaves:
   entities:
   - light.basement_game_area_basement_light_dimmer
-  - switch.basement_playroom_lights_switch
+  - switch.basement_playroom_lights
   name: Basement Playroom Lights
 
 kitchen_light_slaves:

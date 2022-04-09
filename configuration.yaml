@@ -89,17 +89,17 @@ ifttt:
 #      mac: !secret caseta_hub_mac
 
 #zwave
-zwave:
-  usb_path: /dev/ttyUSB0
-  device_config:
-    light.front_lamp_post_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
-    light.front_porch_light_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
+#zwave:
+#  usb_path: /dev/ttyUSB0
+#  device_config:
+#    light.front_lamp_post_level:
+#      polling_intensity: 1
+#      refresh_value: true
+#      delay: 1
+#    light.front_porch_light_level:
+#      polling_intensity: 1
+#      refresh_value: true
+#      delay: 1
 
 #zigbee
 zha:
@@ -126,6 +126,10 @@ alarm_control_panel:
   arming_time: 10
   trigger_time: 10
   disarm_after_trigger: false
+
+media_player:
+  - platform: snapcast
+    host: 192.168.1.115
 
 binary_sensor: !include binary_sensors.yaml
 light: !include lights.yaml

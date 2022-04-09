@@ -109,7 +109,7 @@ views:
         type: entities
       - entities:
           - light.basement_light_dimmer
-          - switch.basement_playroom_lights_switch
+          - switch.basement_playroom_lights
         show_header_toggle: true
         title: Basement Playroom Lights
         type: entities
@@ -146,7 +146,7 @@ views:
         type: entities
       - entities:
           - switch.storage_room_b_l_switch
-          - switch.game_room_accent_switch
+          - switch.game_room_accent_lights
         title: Switch
         type: entities
     path: default_view

@@ -181,7 +181,8 @@
       message: Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}
   id: 757ac7f6b0c84501bac45ba40d2cd9ba
 - id: roku_lr_light_down
-  alias: Use Roku to Turn down LR Lights
+  alias: Use Roku to Turn Down LR Lights
+  description: Uses Roku 4 InstantReplay to dim the lights 10%
   trigger:
   - platform: event
     event_type: roku_command
@@ -210,7 +211,7 @@
   - service: switch.turn_off
     data: {}
     target:
-      entity_id: switch.basement_playroom_lights_switch
+      entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: 902feb12e2e24dde8a1dcc28a4e4a0b4
   alias: Basement Dimmer On
@@ -221,7 +222,7 @@
     to: 'on'
   action:
   - service: switch.turn_on
-    entity_id: switch.basement_playroom_lights_switch
+    entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: 7528df7374404f2493d19313e0b3762c
   alias: Basement Dimmer Off
@@ -232,7 +233,7 @@
     to: 'off'
   action:
   - service: switch.turn_off
-    entity_id: switch.basement_playroom_lights_switch
+    entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: c7cdda5a52ee4874be6e37131222d7db
   alias: Livingroom Pico Favorite Dim
@@ -382,7 +383,7 @@
   condition: []
   action:
   - service: switch.turn_on
-    entity_id: switch.game_room_accent_switch
+    entity_id: switch.game_room_accent_lights
   mode: single
   initial_state: true
 - id: '1648684187266'
@@ -397,7 +398,7 @@
   condition: []
   action:
   - service: switch.turn_off
-    entity_id: switch.game_room_accent_switch
+    entity_id: switch.game_room_accent_lights
   mode: single
   initial_state: true
 - id: '1649131423463'
@@ -441,7 +442,7 @@
   initial_state: true
 - id: '1649208330166'
   alias: Use Roku to Turn up LR Lights
-  description: ''
+  description: Uses Roku 4 Back to increase the lights 10%
   trigger:
   - platform: event
     event_type: roku_command
@@ -454,6 +455,27 @@
   - service: light.turn_on
     data:
       brightness_step_pct: 10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
+  mode: single
+- id: '1649208806829'
+  alias: Use Roku to Max Dim LR Lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Down
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
       entity_id:
