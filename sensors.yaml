@@ -3,6 +3,10 @@
     deck_door_status:
       value_template: "{%if states('sensor.deck_door_sensor_alarm_level') | int == 255 %}open{% elif states('sensor.deck_door_sensor_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Deck Door Status"
+    living_room_door_status_new:
+      value_template: "{%if states('binary_sensor.living_room_door_sensor_any_2') == 'on' %}Open{% elif states('binary_sensor.living_room_door_sensor_any_2') == 'off'  %}Closed{% endif %}"
+      friendly_name: "Living Room Door Status"
+      friendly_name: "Living Room Door Status NEW"
     living_room_door_status:
       value_template: "{%if states('sensor.living_room_door_sensor_alarm_level') | int == 255 %}open{% elif states('sensor.living_room_door_sensor_alarm_level') | int == 0 %}closed{% endif %}"
       friendly_name: "Living Room Door Status"

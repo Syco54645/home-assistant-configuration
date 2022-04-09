@@ -482,3 +482,32 @@
       - light.living_room_door_chair_lamp
       - light.living_room_tv_lamp
   mode: single
+- id: '1649531269541'
+  alias: Lights Front Door Trigger NEW
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_door_status_new
+    from: closed
+    to: open
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.lr_light_slaves
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_cloud_coverage
+        above: 60
+      - condition: sun
+        after: sunset
+        after_offset: '-4:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data:
+      brightness: 255
+  mode: single
+  initial_state: true
