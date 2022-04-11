@@ -431,7 +431,7 @@
     entity_id: switch.master_bedroom_lights_switch
   - service: light.turn_on
     data:
-      brightness_pct: 7
+      brightness_pct: 11
     target:
       entity_id:
       - light.master_bedroom_master_bedroom_light_dimmer
