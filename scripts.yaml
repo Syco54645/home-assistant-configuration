@@ -1,50 +1,85 @@
-################# Alarm Related ####################
-# awayarm:
-#   alias: Away Arm
-#   sequence:
-#       service: alarm_control_panel.alarm_arm_away
-# homearm:
-#   alias: Home Arm
-#   sequence:
-#       service: alarm_control_panel.alarm_arm_home
-# disarm:
-#   alias: Disarm
-#   sequence:
-#       service: alarm_control_panel.alarm_disarm
-
-#light_flash:
-#  alias: Light flash on
-#  sequence:
-#    - service: homeassistant.turn_on
-#      data:
-#        entity_id: group.all_lights
-#    - delay:
-#        seconds: 1
-#    - service: homeassistant.turn_off
-#      data:
-#        entity_id: group.all_lights
-#    - service: script.turn_on
-#      data:
-#        entity_id: script.light_loop
-#light_loop:
-#  alias: Light flash loop
-#  sequence:
-#    - delay:
-#        # time for flash light off
-#        seconds: 1
-#    - service: script.turn_on
-#      data:
-#        entity_id: script.light_flash
-
-
 master_bedroom_bedtime:
   alias: Master Bedroom Bedtime
-  #hide_entity: True
-  #initial_state: True
   sequence:
-    - service: switch.turn_off
-      entity_id: switch.master_bedroom_lights_switch
-    - service: light.turn_on
-      entity_id: light.master_bedroom_light_dimmer
-      data:
-        brightness_pct: 12
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  mode: single
+living_room_lights_100:
+  alias: Living Room Lights 100%
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id: light.livingroom_lights
+  mode: single
+  icon: mdi:lightbulb-group
+living_room_lights_75:
+  alias: Living Room Lights 75%
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 75
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id: light.livingroom_lights
+  mode: single
+  icon: mdi:lightbulb-group
+living_room_lights_50:
+  alias: Living Room Lights 50%
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id: light.livingroom_lights
+  mode: single
+  icon: mdi:lightbulb-group
+living_room_lights_25:
+  alias: Living Room Lights 25%
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 25
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id: light.livingroom_lights
+  mode: single
+  icon: mdi:lightbulb-group
+living_room_lights_10:
+  alias: Living Room Lights 10%
+  sequence:
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id: light.livingroom_lights
+  mode: single
+  icon: mdi:lightbulb-group
+arcade_lights_100:
+  alias: Arcade Lights 100%
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    target:
+      area_id: arcade
+      entity_id: switch.game_room_accent_lights
+  - service: light.turn_on
+    data:
+      transition: 0
+      brightness_pct: 100
+    target:
+      area_id: arcade
+      entity_id: light.arcade_game_room_dimmer
+  mode: single
+  icon: mdi:lightbulb-group

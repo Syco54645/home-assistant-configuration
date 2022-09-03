@@ -34,12 +34,6 @@ http:
   #base_url: 192.168.1.100 # todo switch back to secret and use ssl
   #server_port: 8124 # todo switch back to secret and use ssl
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
 
 # Discover some devices automatically
 discovery:
@@ -83,27 +77,23 @@ ifttt:
   key: !secret ifttt_key
 
 #lutron caseta
-lutron_caseta_pro:
-  bridges:
-    - host: !secret caseta_hub_ip
-      mac: !secret caseta_hub_mac
+#lutron_caseta_pro:
+#  bridges:
+#    - host: !secret caseta_hub_ip
+#      mac: !secret caseta_hub_mac
 
 #zwave
-zwave:
-  usb_path: /dev/ttyUSB0
-  device_config:
-    light.front_lamp_post_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
-    light.front_porch_light_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
-    light.living_room_chair_level:
-      polling_intensity: 1
-      refresh_value: true
-      delay: 1
+#zwave:
+#  usb_path: /dev/ttyUSB0
+#  device_config:
+#    light.front_lamp_post_level:
+#      polling_intensity: 1
+#      refresh_value: true
+#      delay: 1
+#    light.front_porch_light_level:
+#      polling_intensity: 1
+#      refresh_value: true
+#      delay: 1
 
 #zigbee
 zha:
@@ -116,15 +106,7 @@ remote:
   - platform: harmony
     name: Livingroom
     host: 192.168.1.129
-# emulated_hue:
-#   host_ip: 192.168.1.100
-#   listen_port: 8065
-#   advertise_ip: 192.168.1.100
-#   advertise_port: 8061
-#   upnp_bind_multicast: true
-#   expose_by_default: true
-#   exposed_domains:
-#     - group
+
 emulated_roku:
   servers:
     - name: Fake Roku
@@ -139,10 +121,15 @@ alarm_control_panel:
   trigger_time: 10
   disarm_after_trigger: false
 
+media_player:
+  - platform: snapcast
+    host: 192.168.1.115
+
 binary_sensor: !include binary_sensors.yaml
 light: !include lights.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
+scene: !include scenes.yaml
 sensor: !include sensors.yaml
 device_tracker: !include device_trackers.yaml
 script: !include scripts.yaml

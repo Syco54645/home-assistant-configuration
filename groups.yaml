@@ -1,36 +1,30 @@
 lr_light_slaves:
   entities:
-  - light.ge_appliances_zll_light_00038784_1
-  - light.living_room_floor_lamps
+  - light.living_room_tv_lamp
+  - light.living_room_door_chair_lamp
   name: Living Room Lights
-
-front_light_slaves:
-  entities:
-  - light.front_lamp_post_level
-  - light.front_porch_light_level
-  name: Front Lights
 
 basement_light_slaves:
   entities:
-  - light.basement_light_dimmer
-  - switch.basement_playroom_lights_switch
+  - light.basement_game_area_basement_light_dimmer
+  - switch.basement_playroom_lights
   name: Basement Playroom Lights
 
 kitchen_light_slaves:
   entities:
-  - light.kitchen_light_dimmer
+  - light.kitchen_kitchen_light_dimmer
   - switch.sunken_room_lights_switch
   name: Kitchen Lights
 
 game_room_light_slaves:
   entities:
-  - light.game_room_dimmer
+  - light.arcade_game_room_dimmer
   - switch.game_room_lights_switch
   name: Game Room Lights
 
 master_bedroom_room_light_slaves:
   entities:
-  - light.master_bedroom_light_dimmer
+  - light.master_bedroom_master_bedroom_light_dimmer
   - switch.master_bedroom_lights_switch
   name: Master Bedroom Room Lights
 
@@ -89,7 +83,6 @@ default_view1:
   name: Home
   entities:
   - group.lr_light_slaves
-  - group.front_light_slaves
   - climate.living_room
 
 weather_tab:

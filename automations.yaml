@@ -1,14 +1,10 @@
-######### Light Automations ##########
-
-# This will turn the living room lights on when we open the door (presumably arriving home)
 - alias: Lights Front Door Trigger
-  initial_state: True
-  hide_entity: true
+  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.living_room_door_status
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   condition:
     condition: and
     conditions:
@@ -17,33 +13,31 @@
       state: 'off'
     - condition: or
       conditions:
-        - condition: numeric_state
-          entity_id: sensor.dark_sky_cloud_coverage
-          above: 60
-        - condition: sun
-          after: sunset
-          after_offset: "-4:00:00"
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_cloud_coverage
+        above: 60
+      - condition: sun
+        after: sunset
+        after_offset: '-4:00:00'
   action:
     service: light.turn_on
     entity_id: group.lr_light_slaves
     data:
       brightness: 255
-
-# This will turn the living room lights on and dim them after 830 when we open the door (presumably arriving home)
+  id: 0ec9edf2dfab4664bc1176fcb1a4c56a
 - alias: Lights Front Door Trigger Late (8:30pm)
-  initial_state: True
-  hide_entity: true
+  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.living_room_door_status
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   condition:
     condition: and
     conditions:
     - condition: time
       after: '20:30:00'
-      before: '01:00:00'
+      before: 01:00:00
     - condition: state
       entity_id: group.lr_light_slaves
       state: 'off'
@@ -52,104 +46,94 @@
     entity_id: group.lr_light_slaves
     data:
       brightness: 5
-
-# This will turn on the front house lights 1 hour before sunset
+  id: 95220b245c124cc7bf093889bb276f22
 - alias: Lights Front House Sunset On
-  initial_state: True
-  hide_entity: true
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
-    offset: "-01:00:00"
+    offset: -01:00:00
   action:
     service: light.turn_on
-    entity_id: group.front_light_slaves
+    entity_id: light.front_house_lights_2
     data:
       brightness: 255
-
-# This will turn the front house lights on when we arrive home
-- alias: Lights Front Arrival
-  initial_state: true
-  hide_entity: true
+  id: f7a4ca88f9774d2d816a4527e2efba53
+- id: 4b33706b5e0a49e98f0b8f3222ce8dc8
+  alias: Lights Front Arrival
   trigger:
-    platform: state
-    entity_id: device_tracker.android317bb99286d305e1, device_tracker.android9190877cf1e0284f
-    from: 'not_home'
-    to: 'home'
+  - platform: state
+    entity_id: sensor.frank_pixel_5a_wifi_connection
+    from: not_home
+    to: home
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
-      entity_id: group.front_light_slaves
+      entity_id: light.front_house_lights_2
       state: 'off'
     - condition: sun
       after: sunset
-      after_offset: "-1:00:00"
+      after_offset: '-1:00:00'
   action:
-    service: light.turn_on
-    entity_id: group.front_light_slaves
+  - service: light.turn_on
     data:
-      brightness: 255
-
-# This will turn the front house lights off after 15 minutes if they come on after 11pm
+      brightness_pct: 100
+    target:
+      entity_id: light.front_house_lights_2
+  initial_state: true
 - alias: Light Front House off after 15m after 11pm
   initial_state: true
-  hide_entity: true
   trigger:
     platform: state
-    entity_id: group.front_light_slaves
+    entity_id: light.front_house_lights_2
     to: 'on'
     for:
       minutes: 15
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: group.front_light_slaves
-        state: 'on'
-      - condition: time
-        after: '23:00:10'
+    - condition: state
+      entity_id: light.front_house_lights_2
+      state: 'on'
+    - condition: time
+      after: '23:00:10'
   action:
     service: light.turn_off
-    entity_id: group.front_light_slaves
-
-# This will turn off the front house lights at 11pm
-- alias: Lights Front House 11pm Off
-  initial_state: True
-  hide_entity: true
+    entity_id: light.front_house_lights_2
+  id: cdf6a0f4c8c34ec6ab0564650d74b991
+- id: e48e04767cd241a49004a56857fd3d10
+  alias: Lights Front House 10pm Off
   trigger:
-    platform: time
-    at: '23:00:00'
+  - platform: time
+    at: '22:00:00'
   action:
-    service: light.turn_off
-    entity_id: group.front_light_slaves
-
-
-######### Alarm Automations ##########
+  - service: light.turn_off
+    entity_id: light.front_house_lights_2
+  initial_state: true
 - alias: Alarm Away
-  initial_state: True
-  hide_entity: true
+  initial_state: true
   trigger:
   - platform: state
     entity_id: sensor.living_room_door_status
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   - platform: state
     entity_id: sensor.deck_door_status
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   - platform: state
     entity_id: sensor.basement_office_door_status
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   - platform: state
     entity_id: sensor.sunken_room_door_alarm_level
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   - platform: state
     entity_id: sensor.family_room_door_alarm_level
-    from: 'closed'
-    to: 'open'
+    from: closed
+    to: open
   condition:
     condition: state
     entity_id: alarm_control_panel.ha_alarm
@@ -157,127 +141,48 @@
   action:
     service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.ha_alarm
-
-#### Flash the lights
+  id: 5edcff2bed1341ad9c1c8fe94b59b27b
 - alias: Triggered Flash
-  hide_entity: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
-    from: 'armed_away'
-    to: 'triggered'
+    from: armed_away
+    to: triggered
   action:
-  #- service: script.turn_on
-  #  entity_id: script.light_flash
-
-### Trigger Pushover
+  id: b766fb83c466453caca926327eea33a3
 - alias: Triggered Pushover
   initial_state: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
-    to: 'triggered'
+    to: triggered
   action:
   - service: notify.frank_pushover
     data:
-      message: 'Home Alarm Triggered {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
-
-#### Alarm disarmed, switch to normal
+      message: Home Alarm Triggered {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}
+  id: bceb48e33e3d4bb9802ef8f0c8da6eaa
 - alias: Disarmed Off
-  hide_entity: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.ha_alarm
-    from: 'triggered'
-    to: 'disarmed'
+    from: triggered
+    to: disarmed
   action:
-    - service: script.turn_off
-      entity_id: script.light_loop
-    - service: script.turn_off
-      entity_id: script.light_flash
-    - service: script.turn_off
-      entity_id: script.light_loop
-    - service: script.turn_off
-      entity_id: script.light_flash
-    - service: notify.frank_pushover
-      data:
-        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
-
-#- alias: Test Pushover
-#  hide_entity: true
-#  trigger:
-#    platform: state
-#    entity_id: alarm_control_panel.ha_alarm
-#    state: 'disarmed'
-#  action:
-#    - service: notify.frank_pushover
-#      data:
-#        message: 'Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}'
-
-
-- id: roku_lr_light_on
-  alias: Use Roku to Turn on LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Info
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-
-- id: roku_lr_light_off
-  alias: Use Roku to Turn off LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Rev
-  action:
-    service: light.turn_off
-    entity_id: group.lr_light_slaves
-
-- id: roku_lr_light_up
-  alias: Use Roku to Turn up LR Lights
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: OK
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
-    data_template:
-      brightness: >
-        {% if state_attr('light.living_room_floor_lamps', 'brightness') is defined %}
-          {{ state_attr('light.living_room_floor_lamps', 'brightness') + 50 }}
-        {% else %}
-          50
-        {%endif %}
-
-- id: roku_lr_light_50
-  alias: Use Roku to Turn LR Lights to 50%
-  trigger:
-  - platform: event
-    event_type: roku_command
-    event_data:
-      source_name: Fake Roku
-      type: keypress
-      key: Back
-  action:
-    service: light.turn_on
-    entity_id: group.lr_light_slaves
+  - service: script.turn_off
+    entity_id: script.light_loop
+  - service: script.turn_off
+    entity_id: script.light_flash
+  - service: script.turn_off
+    entity_id: script.light_loop
+  - service: script.turn_off
+    entity_id: script.light_flash
+  - service: notify.frank_pushover
     data:
-      brightness: 90
-
+      message: Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}
+  id: 757ac7f6b0c84501bac45ba40d2cd9ba
 - id: roku_lr_light_down
-  alias: Use Roku to Turn down LR Lights
+  alias: Use Roku to Turn Down LR Lights
+  description: Uses Roku 4 InstantReplay to dim the lights 10%
   trigger:
   - platform: event
     event_type: roku_command
@@ -286,52 +191,452 @@
       type: keypress
       key: InstantReplay
   action:
-    service: light.turn_on
+  - service: light.turn_on
+    data:
+      brightness_step_pct: -10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
+- id: a6b702975ea846c6bf1b4789204d83e2
+  alias: Basement Pico Fav
+  trigger:
+  - platform: device
+    device_id: 460c688bcbe7970072a65f4a03a704e2
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.basement_playroom_lights
+  initial_state: true
+- id: 902feb12e2e24dde8a1dcc28a4e4a0b4
+  alias: Basement Dimmer On
+  trigger:
+  - platform: state
+    entity_id: light.basement_game_area_basement_light_dimmer
+    from: 'off'
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.basement_playroom_lights
+  initial_state: true
+- id: 7528df7374404f2493d19313e0b3762c
+  alias: Basement Dimmer Off
+  trigger:
+  - platform: state
+    entity_id: light.basement_game_area_basement_light_dimmer
+    from: 'on'
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.basement_playroom_lights
+  initial_state: true
+- id: c7cdda5a52ee4874be6e37131222d7db
+  alias: Livingroom Pico Favorite Dim
+  trigger:
+  - platform: device
+    device_id: ae9f10d6ddf333922f0f42d290840968
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  action:
+  - service: light.turn_on
     entity_id: group.lr_light_slaves
-    data_template:
-      brightness: >
-        {% if state_attr('light.living_room_floor_lamps', 'brightness') is defined %}
-          {{ state_attr('light.living_room_floor_lamps', 'brightness') - 50 }}
-        {%endif %}
-
-- id: roku_lr_light_down_max
-  alias: Use Roku to Turn down LR Lights to lowest
+    data:
+      brightness: 10
+  initial_state: true
+- id: 988f9522b6fd4110ada91a44393a0a7e
+  alias: Arcade Dimmer On
+  trigger:
+  - platform: state
+    entity_id: light.arcade_game_room_dimmer
+    from: 'off'
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.game_room_lights_switch
+  initial_state: true
+- id: 4f2f3ca3d5c4455d808b15642bbc6baf
+  alias: Arcade Dimmer Off
+  trigger:
+  - platform: state
+    entity_id: light.arcade_game_room_dimmer
+    from: 'on'
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.game_room_lights_switch
+  initial_state: true
+- id: 413ed1bd646c4b88bc129a6b91da28bc
+  alias: Master Bedroom Pico Dim
+  trigger:
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  action:
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  - service: light.turn_on
+    data:
+      brightness_pct: 30
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  initial_state: true
+- id: 1bb6a34fccf140cdb0be41a377503da1
+  alias: Master Bedroom Dimmer On
+  trigger:
+  - platform: state
+    entity_id: light.master_bedroom_master_bedroom_light_dimmer
+    from: 'off'
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.master_bedroom_lights_switch
+  initial_state: true
+- id: 7ac7e942c36e424199970b56699b0106
+  alias: Master Bedroom Dimmer Off
+  trigger:
+  - platform: state
+    entity_id: light.master_bedroom_master_bedroom_light_dimmer
+    from: 'on'
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  initial_state: true
+- id: 3da30d98d0a44f449d60a4bd0c6d3546
+  alias: Storage Room B Pico On
+  trigger:
+  - platform: device
+    device_id: 00c4bc059545c5b17dbd14384dfeb814
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.storage_room_b_l_switch
+  initial_state: true
+- id: 5bf2dc168cab4d1486a3c60b94c02ae9
+  alias: Storage Room B Pico Off
+  trigger:
+  - platform: device
+    device_id: 00c4bc059545c5b17dbd14384dfeb814
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.storage_room_b_l_switch
+  initial_state: true
+- id: '1648573779270'
+  alias: Kitchen Light On
+  description: Used to interface between the Caseta and Zwave lights in the kitchen.
+  trigger:
+  - platform: state
+    entity_id: light.kitchen_kitchen_light_dimmer
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      area_id: 8e8beafacf7c44ca80bb7f5513f5ec6b
+      entity_id: switch.sunken_room_lights_switch
+  mode: single
+- id: '1648574418990'
+  alias: Kitchen Light Off
+  description: Used to interface between the Caseta and Zwave lights in the kitchen.
+  trigger:
+  - platform: state
+    entity_id: light.kitchen_kitchen_light_dimmer
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      area_id: 8e8beafacf7c44ca80bb7f5513f5ec6b
+      entity_id: switch.sunken_room_lights_switch
+  mode: single
+- id: '1648684142915'
+  alias: Arcade Pico On
+  description: An automation to interface between the pico remotes and the zwave accent
+    in the arcade
+  trigger:
+  - platform: device
+    device_id: b40a2c03c212e1156e59d3bd92e6b68d
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
+  condition: []
+  action:
+  - service: switch.turn_on
+    entity_id: switch.game_room_accent_lights
+  mode: single
+  initial_state: true
+- id: '1648684187266'
+  alias: Arcade Pico Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b40a2c03c212e1156e59d3bd92e6b68d
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.game_room_accent_lights
+  mode: single
+  initial_state: true
+- id: '1649131423463'
+  alias: Master Bedroom Pico Dim Hold
+  description: ''
+  trigger:
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: release
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  - platform: device
+    device_id: d7ab4e74d654c2d5be9cffb059e79094
+    domain: lutron_caseta
+    type: release
+    subtype: stop
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  - service: light.turn_on
+    data:
+      brightness_pct: 11
+    target:
+      entity_id:
+      - light.master_bedroom_master_bedroom_light_dimmer
+      area_id: 0dbe2dfe83d7430eab1bda93f043bd4e
+  - service: switch.turn_off
+    entity_id: switch.master_bedroom_lights_switch
+  mode: single
+  initial_state: true
+- id: '1649208330166'
+  alias: Use Roku to Turn up LR Lights
+  description: Uses Roku 4 Back to increase the lights 10%
   trigger:
   - platform: event
     event_type: roku_command
     event_data:
       source_name: Fake Roku
       type: keypress
-      key: Search
+      key: Back
+  condition: []
   action:
-    service: light.turn_on
+  - service: light.turn_on
+    data:
+      brightness_step_pct: 10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
+  mode: single
+- id: '1649208806829'
+  alias: Use Roku to Max Dim LR Lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      source_name: Fake Roku
+      type: keypress
+      key: Down
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
+    target:
+      area_id: b2332f039d2f4dbe98e6fb944aa5f07d
+      entity_id:
+      - light.living_room_door_chair_lamp
+      - light.living_room_tv_lamp
+  mode: single
+- id: '1649531269541'
+  alias: Lights Front Door Trigger NEW
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_door_status_new
+    from: closed
+    to: open
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.lr_light_slaves
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_cloud_coverage
+        above: 60
+      - condition: sun
+        after: sunset
+        after_offset: '-4:00:00'
+  action:
+  - service: light.turn_on
     entity_id: group.lr_light_slaves
     data:
-      brightness: 1
-
-- !include caseta/basement_pico_on.yaml
-- !include caseta/basement_pico_off.yaml
-- !include caseta/basement_on.yaml
-- !include caseta/basement_off.yaml
-- !include caseta/livingroom_pico_on.yaml
-- !include caseta/livingroom_pico_off.yaml
-- !include caseta/livingroom_pico_up.yaml
-- !include caseta/livingroom_pico_down.yaml
-- !include caseta/livingroom_pico_favorite.yaml
-- !include caseta/gameroom_on.yaml
-- !include caseta/gameroom_off.yaml
-- !include caseta/master_bedroom_pico_on.yaml
-- !include caseta/master_bedroom_pico_off.yaml
-- !include caseta/master_bedroom_pico_favorite.yaml
-- !include caseta/master_bedroom_on.yaml
-- !include caseta/master_bedroom_off.yaml
-- !include caseta/kitchen_pico_on.yaml
-- !include caseta/kitchen_pico_off.yaml
-- !include caseta/kitchen_on.yaml
-- !include caseta/kitchen_off.yaml
-- !include caseta/storage_room_b_pico_on.yaml
-- !include caseta/storage_room_b_pico_off.yaml
-- !include caseta/game_room_pico_on.yaml
-- !include caseta/game_room_pico_off.yaml
-# ToDo
-# Arrive home after 11pm, turn on the front lights for 20 minutes.
+      brightness: 255
+  mode: single
+  initial_state: true
+- id: '1652312528455'
+  alias: Whole Home Audio On
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    domain: select
+    entity_id: select.living_room_harmony_hub_activities
+    type: current_option_changed
+    to: Whole Home
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 113df7bed6c1e6db6fc6529c9403f169
+    entity_id: switch.tasmota_b
+    domain: switch
+  mode: single
+- id: '1652312686043'
+  alias: Whole Home Audio Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    domain: select
+    entity_id: select.living_room_harmony_hub_activities
+    type: current_option_changed
+    from: Whole Home
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 113df7bed6c1e6db6fc6529c9403f169
+    entity_id: switch.tasmota_b
+    domain: switch
+  mode: single
+- id: '1660514616084'
+  alias: Turn on lights when Frank get home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 35e805eb9e02ad829dd8b0aafe5f2d42
+    domain: device_tracker
+    entity_id: device_tracker.frank_pixel_3a
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: sun
+    after: sunset
+    enabled: false
+  - condition: state
+    entity_id: light.front_house_lights_2
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1660515341041'
+  alias: Turn on lights when Jess get home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 152a9a3ceeb9d1604796f5fb54cab00d
+    domain: device_tracker
+    entity_id: device_tracker.jess_oneplus_a3000
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: sun
+    after: sunset
+    enabled: false
+  - condition: state
+    entity_id: light.front_house_lights_2
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1661697538519'
+  alias: Front House Pico On
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1661697563251'
+  alias: Front House Pico Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1662177804409'
+  alias: Front House Pico Fav
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.front_house_lights_insect_safe
+  mode: single
+  initial_state: true
