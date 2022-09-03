@@ -4,12 +4,6 @@ lr_light_slaves:
   - light.living_room_door_chair_lamp
   name: Living Room Lights
 
-front_light_slaves:
-  entities:
-  - light.front_lamp_post_level
-  - light.front_porch_light_level
-  name: Front Lights
-
 basement_light_slaves:
   entities:
   - light.basement_game_area_basement_light_dimmer
@@ -89,7 +83,6 @@ default_view1:
   name: Home
   entities:
   - group.lr_light_slaves
-  - group.front_light_slaves
   - climate.living_room
 
 weather_tab:

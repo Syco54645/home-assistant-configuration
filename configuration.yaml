@@ -34,12 +34,6 @@ http:
   #base_url: 192.168.1.100 # todo switch back to secret and use ssl
   #server_port: 8124 # todo switch back to secret and use ssl
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
 
 # Discover some devices automatically
 discovery:

@@ -55,7 +55,7 @@
     offset: -01:00:00
   action:
     service: light.turn_on
-    entity_id: group.front_light_slaves
+    entity_id: light.front_house_lights_2
     data:
       brightness: 255
   id: f7a4ca88f9774d2d816a4527e2efba53
@@ -70,7 +70,7 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: group.front_light_slaves
+      entity_id: light.front_house_lights_2
       state: 'off'
     - condition: sun
       after: sunset
@@ -80,13 +80,13 @@
     data:
       brightness_pct: 100
     target:
-      entity_id: group.front_light_slaves
+      entity_id: light.front_house_lights_2
   initial_state: true
 - alias: Light Front House off after 15m after 11pm
   initial_state: true
   trigger:
     platform: state
-    entity_id: group.front_light_slaves
+    entity_id: light.front_house_lights_2
     to: 'on'
     for:
       minutes: 15
@@ -94,23 +94,23 @@
     condition: and
     conditions:
     - condition: state
-      entity_id: group.front_light_slaves
+      entity_id: light.front_house_lights_2
       state: 'on'
     - condition: time
       after: '23:00:10'
   action:
     service: light.turn_off
-    entity_id: group.front_light_slaves
+    entity_id: light.front_house_lights_2
   id: cdf6a0f4c8c34ec6ab0564650d74b991
-- alias: Lights Front House 11pm Off
-  initial_state: true
+- id: e48e04767cd241a49004a56857fd3d10
+  alias: Lights Front House 10pm Off
   trigger:
-    platform: time
-    at: '23:00:00'
+  - platform: time
+    at: '22:00:00'
   action:
-    service: light.turn_off
-    entity_id: group.front_light_slaves
-  id: e48e04767cd241a49004a56857fd3d10
+  - service: light.turn_off
+    entity_id: light.front_house_lights_2
+  initial_state: true
 - alias: Alarm Away
   initial_state: true
   trigger:
@@ -509,5 +509,134 @@
     entity_id: group.lr_light_slaves
     data:
       brightness: 255
+  mode: single
+  initial_state: true
+- id: '1652312528455'
+  alias: Whole Home Audio On
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    domain: select
+    entity_id: select.living_room_harmony_hub_activities
+    type: current_option_changed
+    to: Whole Home
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 113df7bed6c1e6db6fc6529c9403f169
+    entity_id: switch.tasmota_b
+    domain: switch
+  mode: single
+- id: '1652312686043'
+  alias: Whole Home Audio Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    domain: select
+    entity_id: select.living_room_harmony_hub_activities
+    type: current_option_changed
+    from: Whole Home
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 113df7bed6c1e6db6fc6529c9403f169
+    entity_id: switch.tasmota_b
+    domain: switch
+  mode: single
+- id: '1660514616084'
+  alias: Turn on lights when Frank get home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 35e805eb9e02ad829dd8b0aafe5f2d42
+    domain: device_tracker
+    entity_id: device_tracker.frank_pixel_3a
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: sun
+    after: sunset
+    enabled: false
+  - condition: state
+    entity_id: light.front_house_lights_2
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1660515341041'
+  alias: Turn on lights when Jess get home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 152a9a3ceeb9d1604796f5fb54cab00d
+    domain: device_tracker
+    entity_id: device_tracker.jess_oneplus_a3000
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: sun
+    after: sunset
+    enabled: false
+  - condition: state
+    entity_id: light.front_house_lights_2
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1661697538519'
+  alias: Front House Pico On
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1661697563251'
+  alias: Front House Pico Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1662177804409'
+  alias: Front House Pico Fav
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 1886c0d00105c38a0822f95897753095
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.front_house_lights_insect_safe
   mode: single
   initial_state: true
