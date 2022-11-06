@@ -525,7 +525,7 @@
   action:
   - type: turn_on
     device_id: 113df7bed6c1e6db6fc6529c9403f169
-    entity_id: switch.tasmota_b
+    entity_id: switch.tasmota_arcade_receiver
     domain: switch
   mode: single
 - id: '1652312686043'
@@ -542,7 +542,7 @@
   action:
   - type: turn_off
     device_id: 113df7bed6c1e6db6fc6529c9403f169
-    entity_id: switch.tasmota_b
+    entity_id: switch.tasmota_arcade_receiver
     domain: switch
   mode: single
 - id: '1660514616084'
@@ -638,5 +638,22 @@
     data: {}
     target:
       entity_id: light.front_house_lights_insect_safe
+  mode: single
+  initial_state: true
+- id: '1667168071259'
+  alias: Arcade Pico Fav
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b40a2c03c212e1156e59d3bd92e6b68d
+    domain: lutron_caseta
+    type: press
+    subtype: stop
+  condition: []
+  action:
+  - type: toggle
+    device_id: 113df7bed6c1e6db6fc6529c9403f169
+    entity_id: switch.tasmota_arcade_receiver
+    domain: switch
   mode: single
   initial_state: true
