@@ -10,6 +10,8 @@ resources:
     type: module
   - url: /hacsfiles/light-popup-card/light-popup-card.js
     type: module
+  - url: /config/www/community/text-divider-row/text-divider-row.js
+    type: module
 views:
   - badges:
 #      - binary_sensor.updater

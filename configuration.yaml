@@ -11,6 +11,9 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/New_York
   customize: !include customize.yaml
+  country: US
+  external_url: !secret external_url
+  internal_url: !secret internal_url
 
 # Show links to resources in log and frontend
 #introduction:
@@ -29,8 +32,8 @@ http:
   # Uncomment this to add a password (recommended!)
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-  base_url: !secret dns_host
-  server_port: 8123
+  #base_url: !secret dns_host
+  #server_port: 8123
   #base_url: 192.168.1.100 # todo switch back to secret and use ssl
   #server_port: 8124 # todo switch back to secret and use ssl
 
@@ -102,10 +105,10 @@ zha:
 
 mobile_app:
 
-remote:
-  - platform: harmony
-    name: Livingroom
-    host: 192.168.1.129
+#remote:
+#  - platform: harmony
+#    name: Livingroom
+#    host: 192.168.1.129
 
 emulated_roku:
   servers:
@@ -120,10 +123,6 @@ alarm_control_panel:
   arming_time: 10
   trigger_time: 10
   disarm_after_trigger: false
-
-media_player:
-  - platform: snapcast
-    host: 192.168.1.115
 
 binary_sensor: !include binary_sensors.yaml
 light: !include lights.yaml

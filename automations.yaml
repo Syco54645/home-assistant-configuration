@@ -1,12 +1,13 @@
-- alias: Lights Front Door Trigger
-  initial_state: true
+- id: 0ec9edf2dfab4664bc1176fcb1a4c56a
+  alias: 'Lights: Front Door Trigger'
   trigger:
-    platform: state
-    entity_id: sensor.living_room_door_status
+  - platform: state
+    entity_id:
+    - sensor.living_room_door_status_new
     from: closed
     to: open
   condition:
-    condition: and
+  - condition: and
     conditions:
     - condition: state
       entity_id: group.lr_light_slaves
@@ -20,11 +21,11 @@
         after: sunset
         after_offset: '-4:00:00'
   action:
-    service: light.turn_on
+  - service: light.turn_on
     entity_id: group.lr_light_slaves
     data:
       brightness: 255
-  id: 0ec9edf2dfab4664bc1176fcb1a4c56a
+  initial_state: true
 - alias: Lights Front Door Trigger Late (8:30pm)
   initial_state: true
   trigger:
@@ -47,70 +48,6 @@
     data:
       brightness: 5
   id: 95220b245c124cc7bf093889bb276f22
-- alias: Lights Front House Sunset On
-  initial_state: true
-  trigger:
-    platform: sun
-    event: sunset
-    offset: -01:00:00
-  action:
-    service: light.turn_on
-    entity_id: light.front_house_lights_2
-    data:
-      brightness: 255
-  id: f7a4ca88f9774d2d816a4527e2efba53
-- id: 4b33706b5e0a49e98f0b8f3222ce8dc8
-  alias: Lights Front Arrival
-  trigger:
-  - platform: state
-    entity_id: sensor.frank_pixel_5a_wifi_connection
-    from: not_home
-    to: home
-  condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: light.front_house_lights_2
-      state: 'off'
-    - condition: sun
-      after: sunset
-      after_offset: '-1:00:00'
-  action:
-  - service: light.turn_on
-    data:
-      brightness_pct: 100
-    target:
-      entity_id: light.front_house_lights_2
-  initial_state: true
-- alias: Light Front House off after 15m after 11pm
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: light.front_house_lights_2
-    to: 'on'
-    for:
-      minutes: 15
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: light.front_house_lights_2
-      state: 'on'
-    - condition: time
-      after: '23:00:10'
-  action:
-    service: light.turn_off
-    entity_id: light.front_house_lights_2
-  id: cdf6a0f4c8c34ec6ab0564650d74b991
-- id: e48e04767cd241a49004a56857fd3d10
-  alias: Lights Front House 10pm Off
-  trigger:
-  - platform: time
-    at: '22:00:00'
-  action:
-  - service: light.turn_off
-    entity_id: light.front_house_lights_2
-  initial_state: true
 - alias: Alarm Away
   initial_state: true
   trigger:
@@ -181,7 +118,7 @@
       message: Home Alarm Reset {{ now().strftime("%Y-%m-%d %-I:%m:%S %p") }}
   id: 757ac7f6b0c84501bac45ba40d2cd9ba
 - id: roku_lr_light_down
-  alias: Use Roku to Turn Down LR Lights
+  alias: 'Roku: Turn Down LR Lights'
   description: Uses Roku 4 InstantReplay to dim the lights 10%
   trigger:
   - platform: event
@@ -200,7 +137,7 @@
       - light.living_room_door_chair_lamp
       - light.living_room_tv_lamp
 - id: a6b702975ea846c6bf1b4789204d83e2
-  alias: Basement Pico Fav
+  alias: 'Pico: Basement Pico Fav'
   trigger:
   - platform: device
     device_id: 460c688bcbe7970072a65f4a03a704e2
@@ -214,7 +151,7 @@
       entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: 902feb12e2e24dde8a1dcc28a4e4a0b4
-  alias: Basement Dimmer On
+  alias: 'Caseta: Basement Dimmer On'
   trigger:
   - platform: state
     entity_id: light.basement_game_area_basement_light_dimmer
@@ -225,7 +162,7 @@
     entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: 7528df7374404f2493d19313e0b3762c
-  alias: Basement Dimmer Off
+  alias: 'Caseta: Basement Dimmer Off'
   trigger:
   - platform: state
     entity_id: light.basement_game_area_basement_light_dimmer
@@ -236,7 +173,7 @@
     entity_id: switch.basement_playroom_lights
   initial_state: true
 - id: c7cdda5a52ee4874be6e37131222d7db
-  alias: Livingroom Pico Favorite Dim
+  alias: 'Pico: Livingroom Pico Favorite Dim'
   trigger:
   - platform: device
     device_id: ae9f10d6ddf333922f0f42d290840968
@@ -250,7 +187,7 @@
       brightness: 10
   initial_state: true
 - id: 988f9522b6fd4110ada91a44393a0a7e
-  alias: Arcade Dimmer On
+  alias: 'Caseta: Arcade Dimmer On'
   trigger:
   - platform: state
     entity_id: light.arcade_game_room_dimmer
@@ -261,7 +198,7 @@
     entity_id: switch.game_room_lights_switch
   initial_state: true
 - id: 4f2f3ca3d5c4455d808b15642bbc6baf
-  alias: Arcade Dimmer Off
+  alias: 'Caseta: Arcade Dimmer Off'
   trigger:
   - platform: state
     entity_id: light.arcade_game_room_dimmer
@@ -272,7 +209,7 @@
     entity_id: switch.game_room_lights_switch
   initial_state: true
 - id: 413ed1bd646c4b88bc129a6b91da28bc
-  alias: Master Bedroom Pico Dim
+  alias: 'Pico: Master Bedroom Dim'
   trigger:
   - platform: device
     device_id: d7ab4e74d654c2d5be9cffb059e79094
@@ -293,7 +230,7 @@
     entity_id: switch.master_bedroom_lights_switch
   initial_state: true
 - id: 1bb6a34fccf140cdb0be41a377503da1
-  alias: Master Bedroom Dimmer On
+  alias: 'Caseta: Master Bedroom Dimmer On'
   trigger:
   - platform: state
     entity_id: light.master_bedroom_master_bedroom_light_dimmer
@@ -304,7 +241,8 @@
     entity_id: switch.master_bedroom_lights_switch
   initial_state: true
 - id: 7ac7e942c36e424199970b56699b0106
-  alias: Master Bedroom Dimmer Off
+  alias: 'Caseta: Master Bedroom Dimmer Off'
+  description: Caseta
   trigger:
   - platform: state
     entity_id: light.master_bedroom_master_bedroom_light_dimmer
@@ -315,7 +253,7 @@
     entity_id: switch.master_bedroom_lights_switch
   initial_state: true
 - id: 3da30d98d0a44f449d60a4bd0c6d3546
-  alias: Storage Room B Pico On
+  alias: 'Pico: Storage Room B On'
   trigger:
   - platform: device
     device_id: 00c4bc059545c5b17dbd14384dfeb814
@@ -327,7 +265,7 @@
     entity_id: switch.storage_room_b_l_switch
   initial_state: true
 - id: 5bf2dc168cab4d1486a3c60b94c02ae9
-  alias: Storage Room B Pico Off
+  alias: 'Pico: Storage Room B Off'
   trigger:
   - platform: device
     device_id: 00c4bc059545c5b17dbd14384dfeb814
@@ -339,7 +277,7 @@
     entity_id: switch.storage_room_b_l_switch
   initial_state: true
 - id: '1648573779270'
-  alias: Kitchen Light On
+  alias: 'Caseta: Kitchen Light On'
   description: Used to interface between the Caseta and Zwave lights in the kitchen.
   trigger:
   - platform: state
@@ -355,7 +293,7 @@
       entity_id: switch.sunken_room_lights_switch
   mode: single
 - id: '1648574418990'
-  alias: Kitchen Light Off
+  alias: 'Caseta: Kitchen Light Off'
   description: Used to interface between the Caseta and Zwave lights in the kitchen.
   trigger:
   - platform: state
@@ -371,7 +309,7 @@
       entity_id: switch.sunken_room_lights_switch
   mode: single
 - id: '1648684142915'
-  alias: Arcade Pico On
+  alias: 'Pico: Arcade Pico On'
   description: An automation to interface between the pico remotes and the zwave accent
     in the arcade
   trigger:
@@ -387,7 +325,7 @@
   mode: single
   initial_state: true
 - id: '1648684187266'
-  alias: Arcade Pico Off
+  alias: 'Pico: Arcade Pico Off'
   description: ''
   trigger:
   - platform: device
@@ -402,7 +340,7 @@
   mode: single
   initial_state: true
 - id: '1649131423463'
-  alias: Master Bedroom Pico Dim Hold
+  alias: 'Pico: Master Bedroom Dim Hold'
   description: ''
   trigger:
   - platform: device
@@ -441,7 +379,7 @@
   mode: single
   initial_state: true
 - id: '1649208330166'
-  alias: Use Roku to Turn up LR Lights
+  alias: 'Roku: Turn up LR Lights'
   description: Uses Roku 4 Back to increase the lights 10%
   trigger:
   - platform: event
@@ -487,23 +425,19 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: sensor.living_room_door_status_new
-    from: closed
-    to: open
+    entity_id:
+    - sensor.living_room_door_status_new
+    to: Open
+    from: Closed
   condition:
   - condition: and
     conditions:
     - condition: state
-      entity_id: group.lr_light_slaves
+      entity_id: light.livingroom_lights
       state: 'off'
-    - condition: or
-      conditions:
-      - condition: numeric_state
-        entity_id: sensor.dark_sky_cloud_coverage
-        above: 60
-      - condition: sun
-        after: sunset
-        after_offset: '-4:00:00'
+    - condition: sun
+      after: sunset
+    enabled: true
   action:
   - service: light.turn_on
     entity_id: group.lr_light_slaves
@@ -512,7 +446,7 @@
   mode: single
   initial_state: true
 - id: '1652312528455'
-  alias: Whole Home Audio On
+  alias: 'Harmony: Whole Home Audio On'
   description: ''
   trigger:
   - platform: device
@@ -529,7 +463,7 @@
     domain: switch
   mode: single
 - id: '1652312686043'
-  alias: Whole Home Audio Off
+  alias: 'Harmony: Whole Home Audio Off'
   description: ''
   trigger:
   - platform: device
@@ -555,6 +489,12 @@
     entity_id: device_tracker.frank_pixel_3a
     type: enters
     zone: zone.home
+  - platform: device
+    device_id: 35e805eb9e02ad829dd8b0aafe5f2d42
+    domain: device_tracker
+    entity_id: device_tracker.frank_pixel_3a
+    type: enters
+    zone: zone.home_2
   condition:
   - condition: sun
     after: sunset
@@ -573,11 +513,17 @@
   description: ''
   trigger:
   - platform: device
-    device_id: 152a9a3ceeb9d1604796f5fb54cab00d
+    device_id: 4fc3af880667ee2da2bd9019ebff2298
     domain: device_tracker
-    entity_id: device_tracker.jess_oneplus_a3000
+    entity_id: device_tracker.jess_pixel_6a
     type: enters
     zone: zone.home
+  - platform: device
+    device_id: 4fc3af880667ee2da2bd9019ebff2298
+    domain: device_tracker
+    entity_id: device_tracker.jess_pixel_6a
+    type: enters
+    zone: zone.home_2
   condition:
   - condition: sun
     after: sunset
@@ -592,7 +538,7 @@
       entity_id: light.front_house_lights_2
   mode: single
 - id: '1661697538519'
-  alias: Front House Pico On
+  alias: 'Pico: Front House Pico On'
   description: ''
   trigger:
   - platform: device
@@ -608,7 +554,7 @@
       entity_id: light.front_house_lights_2
   mode: single
 - id: '1661697563251'
-  alias: Front House Pico Off
+  alias: 'Pico: Front House Pico Off'
   description: ''
   trigger:
   - platform: device
@@ -624,7 +570,7 @@
       entity_id: light.front_house_lights_2
   mode: single
 - id: '1662177804409'
-  alias: Front House Pico Fav
+  alias: 'Pico: Front House Pico Fav'
   description: ''
   trigger:
   - platform: device
@@ -641,7 +587,7 @@
   mode: single
   initial_state: true
 - id: '1667168071259'
-  alias: Arcade Pico Fav
+  alias: 'Pico: Arcade Pico Fav'
   description: ''
   trigger:
   - platform: device
@@ -657,3 +603,74 @@
     domain: switch
   mode: single
   initial_state: true
+- id: '1668036111125'
+  alias: 'Lights: Turn off front house lights after 15 minutes'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.outside_garage_lights_sconces
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.front_house_lights_2
+  mode: single
+- id: '1668038195409'
+  alias: 'Lights: Front Door Trigger 8:30pm'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.living_room_door_status_new
+    from: closed
+    to: open
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.lr_light_slaves
+      state: 'off'
+    - condition: time
+      before: 00:00:00
+      after: '20:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: group.lr_light_slaves
+    data:
+      brightness: 255
+  mode: single
+  initial_state: true
+- id: '1669770968773'
+  alias: Christmas tree auto on 9am
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: b08049ba3664e6666cbcf7e009d3e214
+    entity_id: switch.tasmota_christmas_tree
+    domain: switch
+  mode: single
+- id: '1669771017260'
+  alias: Christmas tree auto off 11:30pm
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:30:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: b08049ba3664e6666cbcf7e009d3e214
+    entity_id: switch.tasmota_christmas_tree
+    domain: switch
+  mode: single
