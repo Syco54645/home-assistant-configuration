@@ -17,6 +17,7 @@ homeassistant:
 
 # Show links to resources in log and frontend
 #introduction:
+default_config:
 
 # Enables the frontend
 frontend:
@@ -104,6 +105,8 @@ zha:
   database_path: /config/zigbee.db
 
 mobile_app:
+
+timer:
 
 #remote:
 #  - platform: harmony

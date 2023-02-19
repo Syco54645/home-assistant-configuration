@@ -1,1 +1,63 @@
-[]
+- id: '1675480098321'
+  name: Late night tv
+  entities:
+    light.living_room_door_chair_lamp:
+      supported_color_modes:
+      - brightness
+      device_id: '14'
+      zone_id: '7'
+      friendly_name: Living Room Door Chair Lamp
+      supported_features: 32
+      color_mode: brightness
+      brightness: 2
+      state: 'on'
+    light.living_room_tv_lamp:
+      supported_color_modes:
+      - brightness
+      device_id: '16'
+      zone_id: '8'
+      friendly_name: Living Room Tv Lamp
+      supported_features: 32
+      state: 'off'
+  icon: mdi:television-classic
+  metadata: {}
+- id: '1675487076744'
+  name: Master Bedroom Bedtime
+  entities:
+    light.master_bedroom_master_bedroom_light_dimmer:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 28
+      device_id: '10'
+      zone_id: '5'
+      friendly_name: Master Bedroom Master Bedroom Light Dimmer
+      supported_features: 32
+      state: 'on'
+    switch.master_bedroom_lights_switch:
+      friendly_name: Bed Light
+      state: 'off'
+  icon: mdi:lightbulb-night
+  metadata:
+    switch.master_bedroom_lights_switch:
+      entity_only: true
+- id: '1675828234132'
+  name: Master Bedroom
+  entities:
+    light.master_bedroom_master_bedroom_light_dimmer:
+      supported_color_modes:
+      - brightness
+      device_id: '10'
+      zone_id: '5'
+      friendly_name: Master Bedroom Master Bedroom Light Dimmer
+      supported_features: 32
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    switch.master_bedroom_lights_switch:
+      friendly_name: Bed Light
+      state: 'on'
+  icon: mdi:cow
+  metadata:
+    switch.master_bedroom_lights_switch:
+      entity_only: true

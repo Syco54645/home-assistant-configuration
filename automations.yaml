@@ -498,7 +498,7 @@
   condition:
   - condition: sun
     after: sunset
-    enabled: false
+    enabled: true
   - condition: state
     entity_id: light.front_house_lights_2
     state: 'off'
@@ -527,7 +527,7 @@
   condition:
   - condition: sun
     after: sunset
-    enabled: false
+    enabled: true
   - condition: state
     entity_id: light.front_house_lights_2
     state: 'off'
@@ -673,4 +673,25 @@
     device_id: b08049ba3664e6666cbcf7e009d3e214
     entity_id: switch.tasmota_christmas_tree
     domain: switch
+  mode: single
+- id: '1674775671216'
+  alias: Laundry Done Message
+  description: ''
+  trigger:
+  - type: current
+    platform: device
+    device_id: 4e28fc467e48d8132e35e3037f8fe8c5
+    entity_id: sensor.tasmota_washer_energy_current
+    domain: sensor
+    below: 0.08
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.frank_pushover
+    data:
+      message: Laundry is done
+      title: Laundry Done
   mode: single
