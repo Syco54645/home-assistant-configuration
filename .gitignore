@@ -19,3 +19,9 @@ caseta_*.json
 www/*
 plex.conf
 harmony_*
+dwains-dashboard/*
+hacs/*
+lutron_caseta_pro_192.168.1.15.json
+zigbee.db-shm
+zigbee.db-wal
+zwave*devices.txt
