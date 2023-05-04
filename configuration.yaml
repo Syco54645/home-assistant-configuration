@@ -31,13 +31,15 @@ config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
   #base_url: !secret dns_host
   #server_port: 8123
   #base_url: 192.168.1.100 # todo switch back to secret and use ssl
   #server_port: 8124 # todo switch back to secret and use ssl
-
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.17.0.0/24
 
 # Discover some devices automatically
 discovery:
@@ -100,9 +102,9 @@ ifttt:
 #      delay: 1
 
 #zigbee
-zha:
-  usb_path: /dev/ttyUSB1
-  database_path: /config/zigbee.db
+#zha:
+#  usb_path: /dev/ttyUSB1
+#  database_path: /config/zigbee.db
 
 mobile_app:
 
@@ -171,3 +173,8 @@ input_number:
 #            {% endif %}
 #          data_template:
 #            entity_id: group.{{ location | replace(" ", "_") }}
+panel_iframe:
+  zigbee2mqtt:
+    title: "Zigbee2MQTT"
+    url: "http://192.168.1.100:9442"
+    icon: mdi:electrical_services

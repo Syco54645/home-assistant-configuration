@@ -124,7 +124,6 @@
   - platform: event
     event_type: roku_command
     event_data:
-      source_name: Fake Roku
       type: keypress
       key: InstantReplay
   action:
@@ -318,8 +317,14 @@
     domain: lutron_caseta
     type: press
     subtype: 'on'
+    id: pico_arcade_on
   condition: []
   action:
+  - service: switch.turn_on
+    entity_id: switch.game_room_accent_lights
+    enabled: false
+  - condition: trigger
+    id: pico_arcade_on
   - service: switch.turn_on
     entity_id: switch.game_room_accent_lights
   mode: single
@@ -385,7 +390,6 @@
   - platform: event
     event_type: roku_command
     event_data:
-      source_name: Fake Roku
       type: keypress
       key: Back
   condition: []
@@ -500,7 +504,7 @@
     after: sunset
     enabled: true
   - condition: state
-    entity_id: light.front_house_lights_2
+    entity_id: light.front_house_light_bulb
     state: 'off'
   action:
   - service: light.turn_on
@@ -529,7 +533,7 @@
     after: sunset
     enabled: true
   - condition: state
-    entity_id: light.front_house_lights_2
+    entity_id: light.front_house_light_bulb
     state: 'off'
   action:
   - service: light.turn_on
@@ -609,7 +613,7 @@
   trigger:
   - platform: state
     entity_id:
-    - light.outside_garage_lights_sconces
+    - light.front_house_light_bulb
     for:
       hours: 0
       minutes: 15
@@ -688,10 +692,423 @@
       hours: 0
       minutes: 5
       seconds: 0
+    enabled: false
+  - platform: state
+    entity_id:
+    - binary_sensor.washer_dropped_current
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
   condition: []
   action:
   - service: notify.frank_pushover
     data:
       message: Laundry is done
       title: Laundry Done
+    enabled: false
+  - service: notify.mobile_app_jess_pixel_6a
+    data:
+      message: Laundry is Done
+      title: Laundry Done
+  - service: notify.mobile_app_frank_pixel_5a
+    data:
+      message: Laundry is Done
+      title: Laundry Done
+  mode: single
+- id: '1677208707048'
+  alias: 'Light: Garage Sconces off at sunset'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '+1:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id: 8740b5b4209d42f71eb8fdb4c6e2672b
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.front_lamp_post_bulb
+  mode: single
+- id: '1677208759696'
+  alias: 'Light: Garage Sconces on at sunset'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-1:00:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      device_id: 8740b5b4209d42f71eb8fdb4c6e2672b
+  mode: single
+- id: '1677251265147'
+  alias: Camera dropped
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.printer_camera_fps
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+    below: 1
+    id: printer_camera_dropped
+    enabled: false
+  - platform: numeric_state
+    entity_id: sensor.living_room_camera_fps
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+    below: 1
+    id: lr_camera_dropped
+  - platform: numeric_state
+    entity_id: sensor.amcrest_camera_fps
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+    below: 1
+    id: amcrest_camera_dropped
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: printer_camera_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Printer Camera Dropped Off
+          title: Printer Camera Dropped Off
+    - conditions:
+      - condition: trigger
+        id: lr_camera_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Living Room Camera Dropped Off
+          title: Living Room Camera Dropped Off
+    - conditions:
+      - condition: trigger
+        id: amcrest_camera_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Amcrest Camera Dropped Off
+          title: Amcrest Camera Dropped Off
+  mode: single
+- id: '1677682209425'
+  alias: 'Dropped: Radios'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.squeezebox_radio_water_cooler
+    to: unavailable
+    id: watercooler_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeezebox_radio_bathroom
+    id: bathroom_dropped
+    to: unavailable
+  - platform: state
+    entity_id:
+    - scene.master_bedroom
+    to: unavailable
+    id: master_bedroom_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeeebox_radio_laundry_room
+    to: unavailable
+    id: laundry_room_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeezebox_radio_moms_office
+    to: unavailable
+    id: moms_office_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeeebox_radio_jaxson
+    to: unavailable
+    id: jax_radio_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeezebox_radio_ben
+    to: unavailable
+    id: ben_dropped
+  - platform: state
+    entity_id:
+    - media_player.squeezebox_boom_kitchen_sink
+    to: unavailable
+    id: kitchen_sink_dropped
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: watercooler_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Water Cooler Dropped
+    - conditions:
+      - condition: trigger
+        id: bathroom_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Bathroom Dropped
+    - conditions:
+      - condition: trigger
+        id: master_bedroom_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Master Bedroom Dropped
+    - conditions:
+      - condition: trigger
+        id: laundry_room_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Laundry Room Dropped
+    - conditions:
+      - condition: trigger
+        id: moms_office_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Mom's Office Dropped
+    - conditions:
+      - condition: trigger
+        id: jax_radio_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Jaxsonia Dropped
+    - conditions:
+      - condition: trigger
+        id: ben_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Benzini Dropped
+    - conditions:
+      - condition: trigger
+        id: kitchen_sink_dropped
+      sequence:
+      - service: notify.frank_pushover
+        data:
+          message: Kitchen Sink Dropped
+  mode: single
+- id: '1680997055389'
+  alias: Ikea - Smart Blind Remote Travel
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: e3519e4b83f0df2514e06196e8abb883
+    type: action
+    subtype: open
+    discovery_id: 0x84fd27fffe75f55b action_open
+    id: remote_open
+  - platform: device
+    domain: mqtt
+    device_id: e3519e4b83f0df2514e06196e8abb883
+    type: action
+    subtype: close
+    discovery_id: 0x84fd27fffe75f55b action_close
+    id: remote_close
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: remote_close
+      sequence:
+      - if:
+        - condition: device
+          device_id: 60c877b9a7baea2e845f19b65cc01bf6
+          domain: cover
+          entity_id: cover.ikea_smart_blind_1
+          type: is_closing
+        - condition: or
+          conditions:
+          - condition: device
+            device_id: 60c877b9a7baea2e845f19b65cc01bf6
+            domain: cover
+            entity_id: cover.ikea_smart_blind_1
+            type: is_opening
+        then:
+        - service: cover.stop_cover
+          data: {}
+          target:
+            entity_id: cover.ikea_smart_blind_1
+        else:
+        - service: cover.close_cover
+          data: {}
+          target:
+            entity_id: cover.ikea_smart_blind_1
+    - conditions:
+      - condition: trigger
+        id: remote_open
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.ikea_smart_blind_1
+  mode: single
+- id: '1680997109452'
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: e3519e4b83f0df2514e06196e8abb883
+    type: action
+    subtype: open
+    discovery_id: 0x84fd27fffe75f55b action_open
+  condition: []
+  action:
+  - device_id: 60c877b9a7baea2e845f19b65cc01bf6
+    domain: cover
+    entity_id: cover.ikea_smart_blind_1
+    type: set_position
+    position: 0
+  mode: single
+- id: '1680999235114'
+  alias: Ikea - Smart Blind Remote Stop
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: e3519e4b83f0df2514e06196e8abb883
+    type: action
+    subtype: close
+    discovery_id: 0x84fd27fffe75f55b action_close
+    id: remote_close
+  - platform: device
+    domain: mqtt
+    device_id: e3519e4b83f0df2514e06196e8abb883
+    type: action
+    subtype: open
+    discovery_id: 0x84fd27fffe75f55b action_open
+    id: remote_open
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: remote_close
+      - condition: and
+        conditions:
+        - condition: device
+          device_id: 60c877b9a7baea2e845f19b65cc01bf6
+          domain: cover
+          entity_id: cover.ikea_smart_blind_1
+          type: is_opening
+      sequence:
+      - service: cover.stop_cover
+        data: {}
+        target:
+          entity_id: cover.ikea_smart_blind_1
+    - conditions:
+      - condition: trigger
+        id: remote_open
+      - condition: and
+        conditions:
+        - condition: device
+          device_id: 60c877b9a7baea2e845f19b65cc01bf6
+          domain: cover
+          entity_id: cover.ikea_smart_blind_1
+          type: is_closing
+      sequence:
+      - service: cover.stop_cover
+        data: {}
+        target:
+          entity_id: cover.ikea_smart_blind_1
+  mode: single
+- id: '1682216436768'
+  alias: 'Roku: Raise Blinds (amazon)'
+  description: Uses Roku 4 Amazon to raise the blinds
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      type: keypress
+      key: Amazon
+  - platform: event
+    event_type: ''
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      entity_id: cover.ikea_smart_blind_1
+  mode: single
+- id: '1682216586431'
+  alias: 'Roku: Open and Close Blinds'
+  description: 'Open: Play
+
+    Close: Info'
+  trigger:
+  - platform: event
+    event_type: roku_command
+    event_data:
+      type: keypress
+      key: Play
+    id: remote_open
+  - platform: event
+    event_type: roku_command
+    event_data:
+      type: keypress
+      key: Info
+    id: remote_close
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: remote_close
+      sequence:
+      - if:
+        - condition: device
+          device_id: 60c877b9a7baea2e845f19b65cc01bf6
+          domain: cover
+          entity_id: cover.ikea_smart_blind_1
+          type: is_closing
+        - condition: or
+          conditions:
+          - condition: device
+            device_id: 60c877b9a7baea2e845f19b65cc01bf6
+            domain: cover
+            entity_id: cover.ikea_smart_blind_1
+            type: is_opening
+        then:
+        - service: cover.stop_cover
+          data: {}
+          target:
+            entity_id: cover.ikea_smart_blind_1
+        else:
+        - service: cover.close_cover
+          data: {}
+          target:
+            entity_id: cover.ikea_smart_blind_1
+    - conditions:
+      - condition: trigger
+        id: remote_open
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.ikea_smart_blind_1
   mode: single
