@@ -23,20 +23,11 @@ default_config:
 frontend:
   themes: !include themes.yaml
 
-#lovelace:
-#  mode: yaml
-
 # Enables configuration UI
 config:
 
 http:
-  # Uncomment this to add a password (recommended!)
-  #ssl_certificate: !secret ssl_certificate
-  #ssl_key: !secret ssl_key
-  #base_url: !secret dns_host
-  #server_port: 8123
-  #base_url: 192.168.1.100 # todo switch back to secret and use ssl
-  #server_port: 8124 # todo switch back to secret and use ssl
+  # reverse proxy config
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.17.0.0/24
@@ -60,19 +51,6 @@ sun:
 tts:
   platform: google_translate
 
-# wink hub
-#wink:
-#  access_token: !secret wink_hub_access_token
-
-#mqtt:
-#  broker: !secret mqtt_broker
-#  port: !secret mqtt_port
-#  client_id: home-assistant-1
-
-#mqtt:
-#  broker: 192.168.1.133
-#  port: 9898
-
 # nest
 nest:
   client_id: !secret nest_client_id
@@ -82,38 +60,9 @@ nest:
 ifttt:
   key: !secret ifttt_key
 
-#lutron caseta
-#lutron_caseta_pro:
-#  bridges:
-#    - host: !secret caseta_hub_ip
-#      mac: !secret caseta_hub_mac
-
-#zwave
-#zwave:
-#  usb_path: /dev/ttyUSB0
-#  device_config:
-#    light.front_lamp_post_level:
-#      polling_intensity: 1
-#      refresh_value: true
-#      delay: 1
-#    light.front_porch_light_level:
-#      polling_intensity: 1
-#      refresh_value: true
-#      delay: 1
-
-#zigbee
-#zha:
-#  usb_path: /dev/ttyUSB1
-#  database_path: /config/zigbee.db
-
 mobile_app:
 
 timer:
-
-#remote:
-#  - platform: harmony
-#    name: Livingroom
-#    host: 192.168.1.129
 
 emulated_roku:
   servers:
@@ -161,18 +110,6 @@ input_number:
     max: 255
     step: 50
 
-#snips:
-#  intents:
-#    LightsIntent:
-#      action:
-#        - service_template: >
-#            {% if state == 'on' %}
-#              light.turn_on
-#            {% else %}
-#              light.turn_off
-#            {% endif %}
-#          data_template:
-#            entity_id: group.{{ location | replace(" ", "_") }}
 panel_iframe:
   zigbee2mqtt:
     title: "Zigbee2MQTT"
