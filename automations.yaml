@@ -912,7 +912,7 @@
           message: Kitchen Sink Dropped
   mode: single
 - id: '1680997055389'
-  alias: Ikea - Smart Blind Remote Travel
+  alias: Ikea - Smart Blind Remote
   description: ''
   trigger:
   - platform: device
@@ -953,12 +953,12 @@
         - service: cover.stop_cover
           data: {}
           target:
-            entity_id: cover.ikea_smart_blind_1
+            entity_id: cover.living_room_blinds
         else:
         - service: cover.close_cover
           data: {}
           target:
-            entity_id: cover.ikea_smart_blind_1
+            entity_id: cover.living_room_blinds
     - conditions:
       - condition: trigger
         id: remote_open
@@ -966,76 +966,7 @@
       - service: cover.open_cover
         data: {}
         target:
-          entity_id: cover.ikea_smart_blind_1
-  mode: single
-- id: '1680997109452'
-  description: ''
-  trigger:
-  - platform: device
-    domain: mqtt
-    device_id: e3519e4b83f0df2514e06196e8abb883
-    type: action
-    subtype: open
-    discovery_id: 0x84fd27fffe75f55b action_open
-  condition: []
-  action:
-  - device_id: 60c877b9a7baea2e845f19b65cc01bf6
-    domain: cover
-    entity_id: cover.ikea_smart_blind_1
-    type: set_position
-    position: 0
-  mode: single
-- id: '1680999235114'
-  alias: Ikea - Smart Blind Remote Stop
-  description: ''
-  trigger:
-  - platform: device
-    domain: mqtt
-    device_id: e3519e4b83f0df2514e06196e8abb883
-    type: action
-    subtype: close
-    discovery_id: 0x84fd27fffe75f55b action_close
-    id: remote_close
-  - platform: device
-    domain: mqtt
-    device_id: e3519e4b83f0df2514e06196e8abb883
-    type: action
-    subtype: open
-    discovery_id: 0x84fd27fffe75f55b action_open
-    id: remote_open
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: trigger
-        id: remote_close
-      - condition: and
-        conditions:
-        - condition: device
-          device_id: 60c877b9a7baea2e845f19b65cc01bf6
-          domain: cover
-          entity_id: cover.ikea_smart_blind_1
-          type: is_opening
-      sequence:
-      - service: cover.stop_cover
-        data: {}
-        target:
-          entity_id: cover.ikea_smart_blind_1
-    - conditions:
-      - condition: trigger
-        id: remote_open
-      - condition: and
-        conditions:
-        - condition: device
-          device_id: 60c877b9a7baea2e845f19b65cc01bf6
-          domain: cover
-          entity_id: cover.ikea_smart_blind_1
-          type: is_closing
-      sequence:
-      - service: cover.stop_cover
-        data: {}
-        target:
-          entity_id: cover.ikea_smart_blind_1
+          entity_id: cover.living_room_blinds
   mode: single
 - id: '1682216436768'
   alias: 'Roku: Raise Blinds (amazon)'
@@ -1097,12 +1028,13 @@
         - service: cover.stop_cover
           data: {}
           target:
-            entity_id: cover.ikea_smart_blind_1
+            entity_id:
+            - cover.living_room_blinds
         else:
         - service: cover.close_cover
           data: {}
           target:
-            entity_id: cover.ikea_smart_blind_1
+            entity_id: cover.living_room_blinds
     - conditions:
       - condition: trigger
         id: remote_open
@@ -1110,5 +1042,22 @@
       - service: cover.open_cover
         data: {}
         target:
-          entity_id: cover.ikea_smart_blind_1
+          entity_id: cover.living_room_blinds
+  mode: single
+- id: '1685405603085'
+  alias: 'Printer: Send notification when print is done'
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: 72aa7c30067abddd612557b4ffb716dd
+    entity_id: sensor.mainsailos_progress
+    domain: sensor
+    above: 99.9
+  condition: []
+  action:
+  - service: notify.mobile_app_frank_pixel_5a
+    data:
+      message: Print is complete
+      title: Print is complete
   mode: single

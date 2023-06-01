@@ -115,3 +115,7 @@ panel_iframe:
     title: "Zigbee2MQTT"
     url: "http://192.168.1.100:9442"
     icon: mdi:electrical_services
+  zwave2mqtt:
+    title: "Zwave2MQTT"
+    url: "http://192.168.1.100:8091"
+    icon: mdi:electrical_services
