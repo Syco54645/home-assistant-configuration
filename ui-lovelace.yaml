@@ -98,7 +98,7 @@ views:
       - entities:
           - light.ge_appliances_zll_light_00038784_1
           - light.living_room_floor_lamps
-          - light.livingroom_lights
+          #- light.livingroom_lights
         show_header_toggle: true
         title: Livingroom Lights
         type: entities

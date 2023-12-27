@@ -1,0 +1,30 @@
+# Example temperature.yaml entry
+language: "en"
+intents:
+  CustomOutsideHumidity:
+    data:
+      - sentences:
+          - "What is the humidity outside"
+  CustomOutsideHumidity123:
+    data:
+      - sentences:
+          - "testing this"
+  TvOff: 
+    data:
+      - sentences:
+          - "turn off [the] tv"
+  Plex:
+    data:
+      - sentences:
+          - "[I (want to|wanna)] watch (tv|plex|[a] movie)"
+          - "turn on plex"
+  Switch:
+    data:
+      - sentences:
+          - "[I (want to|wanna)] play [the] switch"
+          - "turn on [the] switch"
+  WholeHome:
+    data:
+      - sentences:
+          - "[I (want to|wanna)] listen to [the] (whole home audio|music)"
+          - "turn on [the] (whole home audio|music)"

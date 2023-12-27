@@ -48,10 +48,3 @@
   entities:
     - light.front_lamp_post_level
     - light.front_porch_light_level
-
-- platform: group
-  unique_id: living_room_light_group
-  name: Living Room Lights
-  entities:
-    - light.living_room_tv_lamp
-    - light.living_room_door_chair_lamp

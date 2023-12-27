@@ -19,7 +19,7 @@ living_room_lights_100:
       brightness_pct: 100
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
   mode: single
   icon: mdi:lightbulb-group
 living_room_lights_75:
@@ -30,7 +30,7 @@ living_room_lights_75:
       brightness_pct: 75
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
   mode: single
   icon: mdi:lightbulb-group
 living_room_lights_50:
@@ -41,7 +41,7 @@ living_room_lights_50:
       brightness_pct: 50
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
   mode: single
   icon: mdi:lightbulb-group
 living_room_lights_25:
@@ -52,7 +52,7 @@ living_room_lights_25:
       brightness_pct: 25
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
   mode: single
   icon: mdi:lightbulb-group
 living_room_lights_10:
@@ -63,7 +63,7 @@ living_room_lights_10:
       brightness_pct: 10
     target:
       area_id: b2332f039d2f4dbe98e6fb944aa5f07d
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
   mode: single
   icon: mdi:lightbulb-group
 arcade_lights_100:

@@ -10,7 +10,7 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: group.lr_light_slaves
+      entity_id: light.living_room_lights_fix
       state: 'off'
     - condition: or
       conditions:
@@ -22,7 +22,7 @@
         after_offset: '-4:00:00'
   action:
   - service: light.turn_on
-    entity_id: group.lr_light_slaves
+    entity_id: light.living_room_lights_fix
     data:
       brightness: 255
   initial_state: true
@@ -40,11 +40,11 @@
       after: '20:30:00'
       before: 01:00:00
     - condition: state
-      entity_id: group.lr_light_slaves
+      entity_id: light.living_room_lights_fix
       state: 'off'
   action:
     service: light.turn_on
-    entity_id: group.lr_light_slaves
+    entity_id: light.living_room_lights_fix
     data:
       brightness: 5
   id: 95220b245c124cc7bf093889bb276f22
@@ -181,7 +181,7 @@
     subtype: stop
   action:
   - service: light.turn_on
-    entity_id: group.lr_light_slaves
+    entity_id: light.living_room_lights_fix
     data:
       brightness: 10
   initial_state: true
@@ -437,14 +437,14 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: light.livingroom_lights
+      entity_id: light.living_room_lights_fix
       state: 'off'
     - condition: sun
       after: sunset
     enabled: true
   action:
   - service: light.turn_on
-    entity_id: group.lr_light_slaves
+    entity_id: light.living_room_lights_fix
     data:
       brightness: 255
   mode: single
@@ -640,24 +640,24 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: group.lr_light_slaves
+      entity_id: light.living_room_lights_fix
       state: 'off'
     - condition: time
       before: 00:00:00
       after: '20:00:00'
   action:
   - service: light.turn_on
-    entity_id: group.lr_light_slaves
+    entity_id: light.living_room_lights_fix
     data:
       brightness: 255
   mode: single
   initial_state: true
 - id: '1669770968773'
-  alias: Christmas tree auto on 9am
+  alias: Christmas tree auto on 630am
   description: ''
   trigger:
   - platform: time
-    at: 09:00:00
+    at: 06:30:00
   condition: []
   action:
   - type: turn_on
@@ -1060,4 +1060,94 @@
     data:
       message: Print is complete
       title: Print is complete
+  mode: single
+- id: '1691760436697'
+  alias: 'Cover: Open Blinds 8am'
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id:
+      - 16a0065e8e11282d5c56a29063139153
+      - 60c877b9a7baea2e845f19b65cc01bf6
+      - 81c4696b41f397a41d4c42ff71e21abb
+  mode: single
+- id: '1691760498144'
+  alias: 'Cover: Close 9pm'
+  description: ''
+  trigger:
+  - platform: time
+    at: sensor.sun_next_setting
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id:
+      - 16a0065e8e11282d5c56a29063139153
+      - 60c877b9a7baea2e845f19b65cc01bf6
+      - 81c4696b41f397a41d4c42ff71e21abb
+  mode: single
+- id: '1700932025471'
+  alias: 'Sentence: Family Movie Time'
+  description: ''
+  trigger:
+  - platform: conversation
+    command:
+    - Initiate Family Movie Mode
+    - Initiate Family Movie Time
+    - Family Movie Mode
+    - Family Movie Time
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    entity_id: f37b9ed13b343ce6cda7e5d0b6236df7
+    domain: switch
+  mode: single
+- id: '1700932167775'
+  alias: 'Sentence: Turn off TV'
+  description: ''
+  trigger:
+  - platform: conversation
+    command:
+    - Turn off [the] TV
+    - Turn off [the] Television
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 02b62fc4cb9d561799a6d9d7f808684f
+    entity_id: f37b9ed13b343ce6cda7e5d0b6236df7
+    domain: switch
+  mode: single
+- id: '1700948313332'
+  alias: 'Christmas: Turn off outdoor lights'
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:00:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: c91e03043f028ec43ffcce937c48b029
+    entity_id: 4138e2c3cb1e705c5e3c28bf3e70017f
+    domain: switch
+  mode: single
+- id: '1700948441461'
+  alias: 'Christmas: Turn on outdoor lights'
+  description: ''
+  trigger:
+  - platform: time
+    at: sensor.sun_next_setting
+  condition: []
+  action:
+  - type: turn_on
+    device_id: c91e03043f028ec43ffcce937c48b029
+    entity_id: 4138e2c3cb1e705c5e3c28bf3e70017f
+    domain: switch
   mode: single

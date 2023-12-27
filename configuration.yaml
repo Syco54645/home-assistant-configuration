@@ -33,7 +33,7 @@ http:
     - 172.17.0.0/24
 
 # Discover some devices automatically
-discovery:
+#discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -109,6 +109,42 @@ input_number:
     min: 50
     max: 255
     step: 50
+
+conversation:
+
+# Example configuration.yaml entry
+intent_script:
+  CustomOutsideHumidity:
+    speech:
+      text: "It is currently who knows percent humidity outside."
+  CustomOutsideHumidity123:
+    speech:
+      text: "no idea."
+  TvOff:
+    action:
+      service: remote.turn_off
+      target:
+        entity_id: remote.living_room_harmony_hub
+    speech:
+      text: "Thy bidding is done."
+  Plex:
+    action:
+      service: remote.turn_on
+      data:
+        activity: Plex
+      target:
+        entity_id: remote.living_room_harmony_hub
+    speech:
+      text: "Thy bidding is done."
+  Switch:
+    action:
+      service: remote.turn_on
+      data:
+        activity: "Play Switch"
+      target:
+        entity_id: remote.living_room_harmony_hub
+    speech:
+      text: "Thy bidding is done."
 
 panel_iframe:
   zigbee2mqtt:
